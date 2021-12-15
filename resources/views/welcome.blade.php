@@ -21,7 +21,6 @@
 </head>
 
 <body class="bg-surface">
-
     <!--start wrapper-->
     <div class="wrapper">
 
