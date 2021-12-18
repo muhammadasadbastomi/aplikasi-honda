@@ -600,9 +600,9 @@
                         <div class="menu-title">Master Data</div>
                     </a>
                     <ul>
-                        <li> <a href="{{route('admin.user.index')}}"><i class="bi bi-arrow-right-short"></i>User</a>
+                        <li class="{{ Request::is('admin/user/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.user.index')}}"><i class="bi bi-arrow-right-short"></i>User</a>
                         </li>
-                        <li> <a href="index.html"><i class="bi bi-arrow-right-short"></i>Sparepart</a>
+                        <li class="{{ Request::is('admin/sparepart/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.sparepart.index')}}"><i class="bi bi-arrow-right-short"></i>Sparepart</a>
                         </li>
                         <li> <a href="index3.html"><i class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
                         </li>
@@ -1047,7 +1047,9 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                scrollX: true
+            });
         } );
     </script>
     @yield('script')

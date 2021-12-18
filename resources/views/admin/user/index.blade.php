@@ -68,13 +68,7 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>No</th>
-                                   <th>Username</th>
-                                   <th>Aksi</th>
-                                </tr>
-                            </tfoot>
+                         
                         </table>
                     </div>
                 </div>

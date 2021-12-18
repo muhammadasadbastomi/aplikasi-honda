@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SparepartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::name('user.')->prefix('user')->group(function(){
             Route::delete('{user}/destroy', [UserController::class, 'destroy'])->name('destroy');
         });
+        Route::resource('sparepart', SparepartController::class);
         // Route::resource('desa', DesaController::class);
         // Route::resource('camat', CamatController::class);
         // Route::resource('kasi', KasiController::class);
