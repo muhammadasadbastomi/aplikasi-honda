@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RakController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('{user}/destroy', [UserController::class, 'destroy'])->name('destroy');
         });
         Route::resource('sparepart', SparepartController::class);
+        Route::resource('rak', RakController::class);
         // Route::resource('desa', DesaController::class);
         // Route::resource('camat', CamatController::class);
         // Route::resource('kasi', KasiController::class);

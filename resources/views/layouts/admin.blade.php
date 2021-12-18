@@ -604,7 +604,7 @@
                         </li>
                         <li class="{{ Request::is('admin/sparepart/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.sparepart.index')}}"><i class="bi bi-arrow-right-short"></i>Sparepart</a>
                         </li>
-                        <li> <a href="index3.html"><i class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
+                        <li class="{{ Request::is('admin/rak/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.rak.index')}}"><i class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
                         </li>
                         {{-- <li> <a href="index4.html"><i class="bi bi-arrow-right-short"></i>Project Management</a>
                         </li>
