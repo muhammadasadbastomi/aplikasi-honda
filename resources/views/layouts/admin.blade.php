@@ -79,20 +79,19 @@
                             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                                 data-bs-toggle="dropdown">
                                 <div class="user-setting d-flex align-items-center gap-1">
-                                    <img src="{{asset('assets/images/avatars/avatar-1.png')}}" class="user-img" alt="">
-                                    <div class="user-name d-none d-sm-block">Jhon Deo</div>
+                                    <img src="{{asset('storage/user/'.Auth::user()->foto)}}" class="user-img" alt="">
+                                    <div class="user-name d-none d-sm-block">{{Auth::user()->nama}}</div>
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <a class="dropdown-item" href="#">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{asset('assets/images/avatars/avatar-1.png')}}" alt=""
+                                            <img src="{{asset('storage/user/'.Auth::user()->foto)}}" alt=""
                                                 class="rounded-circle" width="60" height="60">
                                             <div class="ms-3">
-                                                <h6 class="mb-0 dropdown-user-name">Jhon Deo</h6>
-                                                <small class="mb-0 dropdown-user-designation text-secondary">HR
-                                                    Manager</small>
+                                                <h6 class="mb-0 dropdown-user-name">{{Auth::user()->nama}}</h6>
+                                                <small class="mb-0 dropdown-user-designation text-secondary">{{Auth::user()->username}}</small>
                                             </div>
                                         </div>
                                     </a>
@@ -601,7 +600,7 @@
                         <div class="menu-title">Master Data</div>
                     </a>
                     <ul>
-                        <li> <a href="index2.html"><i class="bi bi-arrow-right-short"></i>User</a>
+                        <li> <a href="{{route('admin.user.index')}}"><i class="bi bi-arrow-right-short"></i>User</a>
                         </li>
                         <li> <a href="index.html"><i class="bi bi-arrow-right-short"></i>Sparepart</a>
                         </li>
@@ -1045,6 +1044,11 @@
     <script>
         new PerfectScrollbar(".best-product")
      new PerfectScrollbar(".top-sellers-list")
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
     </script>
     @yield('script')
 

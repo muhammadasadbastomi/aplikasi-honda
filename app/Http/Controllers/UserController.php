@@ -29,10 +29,10 @@ class UserController extends Controller
         if ($req->foto) {
             $name = $req->file('foto')->getClientOriginalName();
 
-            $req->file('foto')->store('public/user');
+            $req->file('foto')->storeAs('public/user',$name);
             $input['foto'] = $name;
         }
-
+// dd($input);
         $data = User::create($input);
 
         return redirect()->route('admin.user.index')->withSuccess('Data berhasil disimpan');
@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function update(User $user, Request $req)
     {
-        $input = $req->all();
+        $input = $req->except('password','foto');
 
         if ($req->password) {
             $input['password'] = Hash::make($req->password);
@@ -66,6 +66,7 @@ class UserController extends Controller
     {
         try {
             $user->delete();
+            return back()->withSuccess('Data berhasil dihapus');
         } catch (Exception $exception) {
             return notify()->warning($exception->getMessage());
         }

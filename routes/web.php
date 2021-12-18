@@ -30,7 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::name('admin.')->prefix('admin')->group(function () {
 
         Route::get('/index', [DashboardController::class, 'index'])->name('index');
-        Route::resource('user', UserController::class);
+        Route::resource('user', UserController::class)->except('destroy');
+        Route::name('user.')->prefix('user')->group(function(){
+            Route::delete('{user}/destroy', [UserController::class, 'destroy'])->name('destroy');
+        });
         // Route::resource('desa', DesaController::class);
         // Route::resource('camat', CamatController::class);
         // Route::resource('kasi', KasiController::class);
