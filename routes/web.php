@@ -5,7 +5,9 @@ use App\Http\Controllers\RakController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\PembelianDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,11 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::resource('sparepart', SparepartController::class);
         Route::resource('rak', RakController::class);
+        Route::resource('pembelian', PembelianController::class);
+        Route::resource('pembelianDetail', PembelianDetailController::class)->except('index','create');
+        Route::name('pembelianDetail.')->prefix('pembelianDetail')->group(function(){
+            Route::get('/create/{id}', [PembelianDetailController::class, 'create'])->name('create');
+        });
         // Route::resource('desa', DesaController::class);
         // Route::resource('camat', CamatController::class);
         // Route::resource('kasi', KasiController::class);

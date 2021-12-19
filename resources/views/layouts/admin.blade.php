@@ -606,10 +606,17 @@
                         </li>
                         <li class="{{ Request::is('admin/rak/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.rak.index')}}"><i class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
                         </li>
-                        {{-- <li> <a href="index4.html"><i class="bi bi-arrow-right-short"></i>Project Management</a>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class="bi bi-clipboard-data"></i>
+                        </div>
+                        <div class="menu-title">Transaksi</div>
+                    </a>
+                    <ul>
+                        <li class="{{ Request::is('admin/pembelian/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.pembelian.index')}}"><i class="bi bi-arrow-right-short"></i>Pembelian</a>
                         </li>
-                        <li> <a href="index5.html"><i class="bi bi-arrow-right-short"></i>CMS Dashboard</a>
-                        </li> --}}
                     </ul>
                 </li>
                 {{-- <li>
