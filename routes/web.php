@@ -7,8 +7,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\PembelianDetailController;
+use App\Http\Controllers\PenjualanDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create/{id}', [PembelianDetailController::class, 'create'])->name('create');
         });
         Route::resource('stok', StokController::class);
+        Route::resource('penjualan', PenjualanController::class);
+        Route::resource('penjualanDetail', PenjualanDetailController::class)->except('index','create');
+        Route::name('penjualanDetail.')->prefix('penjualanDetail')->group(function(){
+            Route::get('/create/{id}', [PenjualanDetailController::class, 'create'])->name('create');
+        });
         // Route::resource('desa', DesaController::class);
         // Route::resource('camat', CamatController::class);
         // Route::resource('kasi', KasiController::class);

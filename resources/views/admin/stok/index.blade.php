@@ -57,7 +57,7 @@
                                     <td>{{$d->sparepart->partNumber}}</td>
                                     <td>{{$d->sparepart->deskripsi}}</td>
                                     <td>{{$d->stok}}</td>
-                                    <td>{{$d->hargaJual}}</td>
+                                    <td>@currency($d->hargaJual)</td>
                                 </tr>
                                 @endforeach
                             </tbody>

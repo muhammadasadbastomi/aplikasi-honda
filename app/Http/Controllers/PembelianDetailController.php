@@ -57,6 +57,7 @@ class PembelianDetailController extends Controller
             $stok = Stok::create($input);
         }else{
             $stok->stok = $stok->stok + $pembelianDetail->jumlahSj;
+            $stok->hargaJual = $request->hargaJual;
             $stok->update();
         }
 
@@ -108,6 +109,7 @@ class PembelianDetailController extends Controller
             $diff = $jumlahNew - $jumlahOld;
             $stok->stok = $stok->stok + $diff;
         }
+            $stok->hargaJual = $request->hargaJual;
             $stok->update();
 
         $pembelianDetail->update($request->all());

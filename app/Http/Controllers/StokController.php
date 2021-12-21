@@ -15,14 +15,14 @@ class StokController extends Controller
     public function index()
     {
         $data = Stok::all();
-        $data->map(function($item){
-            $sparepart = $item->sparepart;
-            $hargaMin = $sparepart->pembelian_detail->min('hargaJual');
-            $hargaMax = $sparepart->pembelian_detail->max('hargaJual');
-                $hargaJual = $hargaMin .' - '. $hargaMax;
-                $item['hargaJual'] = $hargaJual;
-            return $item;
-        });
+        // $data->map(function($item){
+        //     $sparepart = $item->sparepart;
+        //     $hargaMin = $sparepart->pembelian_detail->min('hargaJual');
+        //     $hargaMax = $sparepart->pembelian_detail->max('hargaJual');
+        //         $hargaJual = $hargaMin .' - '. $hargaMax;
+        //         $item['hargaJual'] = $hargaJual;
+        //     return $item;
+        // });
         // dd($data);
 
         return view('admin.stok.index',compact('data'));

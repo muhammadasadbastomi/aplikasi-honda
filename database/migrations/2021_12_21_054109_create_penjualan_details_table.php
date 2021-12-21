@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoksTable extends Migration
+class CreatePenjualanDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateStoksTable extends Migration
      */
     public function up()
     {
-        Schema::create('stoks', function (Blueprint $table) {
+        Schema::create('penjualan_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('penjualan_id');
+            $table->foreign('penjualan_id')->references('id')->on('penjualans')->onDelete('restrict');
             $table->unsignedBigInteger('sparepart_id');
             $table->foreign('sparepart_id')->references('id')->on('spareparts')->onDelete('restrict');
-            $table->unsignedBigInteger('rak_id');
-            $table->foreign('rak_id')->references('id')->on('raks')->onDelete('restrict');
-            $table->string('stok');
+            $table->string('jumlah');
             $table->string('hargaJual');
+            $table->string('diskon')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateStoksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stoks');
+        Schema::dropIfExists('penjualan_details');
     }
 }
