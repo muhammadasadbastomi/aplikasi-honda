@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Carbon\Carbon;
 use App\Models\Rak;
+use App\Models\Stok;
 use App\Models\Pembelian;
 use App\Models\Sparepart;
 use Illuminate\Http\Request;
@@ -50,6 +51,16 @@ class PembelianDetailController extends Controller
         $input = $request->all();
         $input['jumlahRfs'] = $request->jumlahSj;
         $pembelianDetail = PembelianDetail::create($input);
+        $stok = Stok::whereSparepartId($pembelianDetail->sparepart_id)->first();
+        if(!$stok){
+            $input['stok'] = $pembelianDetail->jumlahSj;
+            $stok = Stok::create($input);
+        }else{
+            $stok->stok = $stok->stok + $pembelianDetail->jumlahSj;
+            $stok->update();
+        }
+
+
         return redirect()->route('admin.pembelian.show',$pembelianDetail->pembelian_id)->withSuccess('Data berhasil disimpan');
     }
 
@@ -72,7 +83,9 @@ class PembelianDetailController extends Controller
      */
     public function edit(PembelianDetail $pembelianDetail)
     {
-        return view('admin.pembelianDetail.edit',compact('pembelianDetail'));
+        $sparepart = Sparepart::all();
+        $rak = Rak::all();
+        return view('admin.pembelianDetail.edit',compact('pembelianDetail','sparepart','rak'));
     }
 
     /**
@@ -84,8 +97,22 @@ class PembelianDetailController extends Controller
      */
     public function update(Request $request, PembelianDetail $pembelianDetail)
     {
+        $stok = Stok::whereSparepartId($pembelianDetail->sparepart_id)->first();
+
+        $jumlahOld = $pembelianDetail->jumlahSj;
+        $jumlahNew = $request->jumlahSj;
+        if ($jumlahNew < $jumlahOld){
+            $diff = $jumlahOld - $jumlahNew;
+            $stok->stok = $stok->stok - $diff;
+        }else if($jumlahNew > $jumlahOld){
+            $diff = $jumlahNew - $jumlahOld;
+            $stok->stok = $stok->stok + $diff;
+        }
+            $stok->update();
+
         $pembelianDetail->update($request->all());
-        return redirect()->route('admin.pembelianDetail.index')->withSuccess('Data berhasil diubah');
+        return redirect()->route('admin.pembelian.show',$pembelianDetail->pembelian_id)->withSuccess('Data berhasil diubah');
+        // return redirect()->route('admin.pembelianDetail.index')->withSuccess('Data berhasil diubah');
     }
 
     /**

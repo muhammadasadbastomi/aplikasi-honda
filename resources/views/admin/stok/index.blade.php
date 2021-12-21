@@ -8,12 +8,12 @@
             <ol class="breadcrumb mb-0 p-0">
                 <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Data Pembelian</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Stok</li>
             </ol>
         </nav>
     </div>
     <div class="ms-auto">
-        <a href="{{route('admin.pembelian.create')}}" class="btn btn-primary px-3 radius-30">Tambah Data</a>
+        {{-- <a href="{{route('admin.stok.create')}}" class="btn btn-primary px-3 radius-30">Tambah Data</a> --}}
         <div class="btn-group">
             <button type="button" class="btn btn-primary px-3 radius-30"><span><i class="glyphicon glyphicon-print"></i></span> Cetak</button>
             <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
@@ -29,7 +29,7 @@
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Data Pembelian</h6>
+<h6 class="mb-0 text-uppercase">Data Stok</h6>
 <hr>
 <div class="card">
     <div class="card-body">
@@ -42,27 +42,22 @@
                            <thead>
                                <tr>
                                    <th>No</th>
-                                   <th>Tanggal Pembelian</th>
-                                   <th>No Transaksi</th>
-                                   <th>No Faktur</th>
-                                   <th>Aksi</th>
+                                   <th>Nama Gudang</th>
+                                   <th>Part Number</th>
+                                   <th>Nama Part</th>
+                                   <th>Stok</th>
+                                   <th>Harga Jual</th>
                                </tr>
                            </thead>
                             <tbody >
                                 @foreach($data as $d)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{carbon\carbon::parse($d->tanggalPembelian)->translatedFormat('d F Y')}}</td>
-                                    <td>{{$d->noTransaksi}}</td>
-                                    <td>{{$d->noFaktur}}</td>
-                                    <td>
-                                    <div class="btn-group">
-                                        <a href="{{route('admin.pembelian.show',$d->id)}}" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
-                                        <a href="{{route('admin.pembelian.edit',$d->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                                        <button type="button" class="btn btn-danger destroy" data-bs-toggle="modal" data-route="{{route('admin.pembelian.destroy',$d->id)}}" data-bs-target="#destroyModal"><i class="bi bi-trash-fill"></i></button>
-                                        {{-- <a href="{{route('admin.pembelian.destroy',$d->id)}}" class="btn btn-primary"><i class="bi bi-trash-fill"></i></a> --}}
-                                    </div>
-                                    </td>
+                                    <td>{{$d->rak->gudang}}</td>
+                                    <td>{{$d->sparepart->partNumber}}</td>
+                                    <td>{{$d->sparepart->deskripsi}}</td>
+                                    <td>{{$d->stok}}</td>
+                                    <td>{{$d->hargaJual}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

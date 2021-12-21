@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RakController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -45,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
         Route::name('pembelianDetail.')->prefix('pembelianDetail')->group(function(){
             Route::get('/create/{id}', [PembelianDetailController::class, 'create'])->name('create');
         });
+        Route::resource('stok', StokController::class);
         // Route::resource('desa', DesaController::class);
         // Route::resource('camat', CamatController::class);
         // Route::resource('kasi', KasiController::class);
