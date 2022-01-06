@@ -19,11 +19,12 @@
             <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                 data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
             </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30> <a class="dropdown-item"
-                    href="javascript:;">Action</a>
-                <a class="dropdown-item" href="javascript:;">Another action</a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30> 
+                <a class="dropdown-item" href="{{route('admin.report.userAll')}}">Cetak Keseluruhan</a>
+                {{-- <button type="button" class="dropdown-item cetakAll" data-bs-toggle="modal" data-route="{{route('admin.user.destroy',1)}}" data-bs-target="#bulanModal"><i class="bi bi-printer-fill"></i> Cetak Bulan</button>
+                <button type="button" class="dropdown-item cetakBulan" data-bs-toggle="modal" data-route="{{route('admin.user.destroy',1)}}" data-bs-target="#bulanModal"><i class="bi bi-printer-fill"></i> Cetak Bulan</button>
                 <a class="dropdown-item" href="javascript:;">Something else here</a>
-                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
+                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a> --}}
             </div>
         </div>
     </div>
@@ -77,4 +78,5 @@
     </div>
 </div>
 @include('layouts.modal.destroy')
+@include('layouts.modal.reportBulan')
 @endsection

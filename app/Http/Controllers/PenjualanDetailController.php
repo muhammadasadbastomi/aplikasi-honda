@@ -88,9 +88,14 @@ class PenjualanDetailController extends Controller
      */
     public function edit(PenjualanDetail $penjualanDetail)
     {
-        $sparepart = Sparepart::all();
-        $rak = Rak::all();
-        return view('admin.penjualanDetail.edit',compact('penjualanDetail','sparepart','rak'));
+        $sparepart = Sparepart::with('stok')->whereRelation('stok','stok', '>', 0)->get();
+
+        $sparepart->map(function($item){
+            $item['jumlahStok'] = $item->stok->stok;
+            $item['hargaJual'] = $item->stok->hargaJual;
+            return $item;
+        });
+        return view('admin.penjualanDetail.edit',compact('penjualanDetail','sparepart'));
     }
 
     /**
@@ -104,6 +109,15 @@ class PenjualanDetailController extends Controller
     {
         $stok = Stok::whereSparepartId($penjualanDetail->sparepart_id)->first();
 
+        if($stok->stok < $request->jumlah)
+        {
+            return back()->withWarning('Stok tidak mencukupi');
+        }else{
+
+            $penjualanDetail = PenjualanDetail::create($input);
+                $stok->stok = $stok->stok - $penjualanDetail->jumlah;
+                $stok->update();
+        }
         $jumlahOld = $penjualanDetail->jumlahSj;
         $jumlahNew = $request->jumlahSj;
         if ($jumlahNew < $jumlahOld){
