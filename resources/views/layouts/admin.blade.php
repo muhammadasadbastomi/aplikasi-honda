@@ -627,7 +627,7 @@
                         <div class="menu-title">Transaksi</div>
                     </a>
                     <ul>
-                        <li class="{{ Request::is('admin/pembelian/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.pembelian.index')}}"><i class="bi bi-arrow-right-short"></i>Pembelian</a>
+                        <li class="{{ Request::is('admin/pembelian/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.pembelian.index')}}"><i class="bi bi-arrow-right-short"></i>Penerimaan</a>
                         </li>
                         <li class="{{ Request::is('admin/stok/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.stok.index')}}"><i class="bi bi-arrow-right-short"></i>Stok</a>
                         </li>
