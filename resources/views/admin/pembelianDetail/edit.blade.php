@@ -8,13 +8,13 @@
             <ol class="breadcrumb mb-0 p-0">
                 <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Data Pembelian</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Penerimaan</li>
             </ol>
         </nav>
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Edit Data Pembelian</h6>
+<h6 class="mb-0 text-uppercase">Edit Data Penerimaan</h6>
 <hr>
 <div class="card">
     <form action="{{route('admin.pembelianDetail.update',$pembelianDetail->id)}}" method="post" enctype="multipart/form-data">

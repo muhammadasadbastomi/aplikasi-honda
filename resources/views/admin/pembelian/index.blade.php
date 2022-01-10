@@ -8,7 +8,7 @@
             <ol class="breadcrumb mb-0 p-0">
                 <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Data Pembelian</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Penerimaan</li>
             </ol>
         </nav>
     </div>
@@ -26,7 +26,7 @@
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Data Pembelian</h6>
+<h6 class="mb-0 text-uppercase">Data Penerimaan</h6>
 <hr>
 <div class="card">
     <div class="card-body">
@@ -39,7 +39,7 @@
                            <thead>
                                <tr>
                                    <th>No</th>
-                                   <th>Tanggal Pembelian</th>
+                                   <th>Tanggal Penerimaan</th>
                                    <th>No Transaksi</th>
                                    <th>No Faktur</th>
                                    <th>Aksi</th>
