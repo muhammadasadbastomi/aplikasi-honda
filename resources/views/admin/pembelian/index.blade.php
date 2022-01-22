@@ -6,9 +6,9 @@
     <div class="ps-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                <li class="breadcrumb-item"><a href="{{route('admin.index')}}"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Data Pembelian</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Penerimaan</li>
             </ol>
         </nav>
     </div>
@@ -19,22 +19,19 @@
             <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                 data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
             </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30> <a class="dropdown-item"
-                    href="javascript:;">Action</a>
-                <a class="dropdown-item" href="javascript:;">Another action</a>
-                <a class="dropdown-item" href="javascript:;">Something else here</a>
-                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30> 
+                <a class="dropdown-item" href="{{route('admin.report.pembelianAll')}}">Cetak Keseluruhan</a>
             </div>
         </div>
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Data Pembelian</h6>
+<h6 class="mb-0 text-uppercase">Data Penerimaan</h6>
 <hr>
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap5">
+            <div id="example_wrapper" style="font-size: 12px; font-family: tahoma;" class="dataTables_wrapper dt-bootstrap5">
                 <div class="row">
                     <div class="col-sm-12">
                         <table id="example" class="table table-striped table-bordered dataTable text-center" style="width: 100%;"
@@ -42,7 +39,7 @@
                            <thead>
                                <tr>
                                    <th>No</th>
-                                   <th>Tanggal Pembelian</th>
+                                   <th>Tanggal Penerimaan</th>
                                    <th>No Transaksi</th>
                                    <th>No Faktur</th>
                                    <th>Aksi</th>

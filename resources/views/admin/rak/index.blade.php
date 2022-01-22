@@ -6,7 +6,7 @@
     <div class="ps-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                <li class="breadcrumb-item"><a href="{{route('admin.index')}}"><i class="bx bx-home-alt"></i></a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Data Rak</li>
             </ol>
@@ -19,11 +19,12 @@
             <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split"
                 data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
             </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30> <a class="dropdown-item"
-                    href="javascript:;">Action</a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30> 
+                <a class="dropdown-item" href="{{route('admin.report.rakAll')}}">Cetak Keseluruhan</a>
+                {{-- <a class="dropdown-item"    href="javascript:;">Action</a>
                 <a class="dropdown-item" href="javascript:;">Another action</a>
                 <a class="dropdown-item" href="javascript:;">Something else here</a>
-                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a>
+                <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a> --}}
             </div>
         </div>
     </div>

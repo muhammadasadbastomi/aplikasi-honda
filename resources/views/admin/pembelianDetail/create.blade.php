@@ -6,15 +6,15 @@
     <div class="ps-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                <li class="breadcrumb-item"><a href="{{route('admin.index')}}"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Data Detail Pembelian</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Detail Penerimaan</li>
             </ol>
         </nav>
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Tambah Data Detail Pembelian</h6>
+<h6 class="mb-0 text-uppercase">Tambah Data Detail Penerimaan</h6>
 <hr>
 <div class="card">
     <form action="{{route('admin.pembelianDetail.store')}}" method="post" enctype="multipart/form-data">

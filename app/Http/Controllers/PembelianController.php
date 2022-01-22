@@ -57,6 +57,8 @@ class PembelianController extends Controller
         $pembelianDetail = $pembelian->pembelian_detail->map(function($item){
             $item['totalHarga'] = $item->hargaBeli * $item->jumlahSj;
 
+            $item['hargaJual'] = $item->sparepart->stok->hargaJual;
+
             return $item;
         });
         return view('admin.pembelianDetail.index',compact('pembelian','pembelianDetail'));

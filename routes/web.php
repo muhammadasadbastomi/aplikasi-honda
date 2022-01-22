@@ -2,12 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RakController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\PembelianDetailController;
+use App\Http\Controllers\PenjualanDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +49,12 @@ Route::middleware(['auth'])->group(function () {
         Route::name('pembelianDetail.')->prefix('pembelianDetail')->group(function(){
             Route::get('/create/{id}', [PembelianDetailController::class, 'create'])->name('create');
         });
+        Route::resource('stok', StokController::class);
+        Route::resource('penjualan', PenjualanController::class);
+        Route::resource('penjualanDetail', PenjualanDetailController::class)->except('index','create');
+        Route::name('penjualanDetail.')->prefix('penjualanDetail')->group(function(){
+            Route::get('/create/{id}', [PenjualanDetailController::class, 'create'])->name('create');
+        });
         // Route::resource('desa', DesaController::class);
         // Route::resource('camat', CamatController::class);
         // Route::resource('kasi', KasiController::class);
@@ -65,11 +75,18 @@ Route::middleware(['auth'])->group(function () {
         //     Route::post('/create/', [KonflikController::class, 'storeDetail'])->name('store');
         // });
 
-        // Route::name('report.')->prefix('laporan')->group(function () {
-        //     Route::get('kegiatan', [ReportController::class, 'kegiatanIndex'])->name('kegiatanIndex');
-        //     Route::get('/cetak/kegiatan', [ReportController::class, 'kegiatanAll'])->name('kegiatanAll');
-        //     Route::post('/cetak/kegiatan-tahun', [ReportController::class, 'kegiatanYear'])->name('kegiatanYear');
-        //     Route::post('/cetak/kegiatan-bulan', [ReportController::class, 'kegiatanMonth'])->name('kegiatanMonth');
+        Route::name('report.')->prefix('laporan')->group(function () {
+            // Route::get('kegiatan', [ReportController::class, 'kegiatanIndex'])->name('kegiatanIndex');
+            Route::get('/cetak/user', [ReportController::class, 'userAll'])->name('userAll');
+            Route::get('/cetak/sparepart', [ReportController::class, 'sparepartAll'])->name('sparepartAll');
+            Route::get('/cetak/rak', [ReportController::class, 'rakAll'])->name('rakAll');
+            Route::get('/cetak/stok', [ReportController::class, 'stokAll'])->name('stokAll');
+            Route::get('/cetak/stok-hampir-habis', [ReportController::class, 'stokLow'])->name('stokLow');
+
+            Route::get('/cetak/pembelian', [ReportController::class, 'pembelianAll'])->name('pembelianAll');
+            Route::get('/cetak/penjualan', [ReportController::class, 'penjualanAll'])->name('penjualanAll');
+            // Route::post('/cetak/kegiatan-tahun', [ReportController::class, 'kegiatanYear'])->name('kegiatanYear');
+            // Route::post('/cetak/kegiatan-bulan', [ReportController::class, 'kegiatanMonth'])->name('kegiatanMonth');
 
         //     Route::get('konflik', [ReportController::class, 'konflikIndex'])->name('konflikIndex');
         //     Route::get('/cetak/konflik', [ReportController::class, 'konflikAll'])->name('konflikAll');
@@ -98,6 +115,6 @@ Route::middleware(['auth'])->group(function () {
         //     Route::get('/cetak/BA-gangguan/{id}', [ReportController::class, 'baGangguan'])->name('baGangguan');
         //     Route::get('/cetak/BA-konflik/{id}', [ReportController::class, 'baKonflik'])->name('baKonflik');
         // Route::get('/cetak/BA-kriminal/{id}', [ReportController::class, 'baKriminal'])->name('baKriminal');
-        // });
+        });
     });
 });

@@ -24,7 +24,6 @@ class CreatePembelianDetailsTable extends Migration
             $table->string('jumlahSj');
             $table->string('jumlahRfs');
             $table->string('hargaBeli');
-            $table->string('hargaJual');
             $table->timestamps();
         });
     }

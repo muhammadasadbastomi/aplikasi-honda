@@ -6,9 +6,9 @@
     <div class="ps-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                <li class="breadcrumb-item"><a href="{{route('admin.index')}}"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Data Detail Pembelian</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Detail Penerimaan</li>
             </ol>
         </nav>
     </div>
@@ -29,7 +29,7 @@
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Data Detail Pembelian | {{$pembelian->noTransaksi}}</h6>
+<h6 class="mb-0 text-uppercase">Data Detail Penerimaan | {{$pembelian->noTransaksi}}</h6>
 <hr>
 <div class="card">
     <div class="card-body">
@@ -37,7 +37,7 @@
             <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap5">
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="example" class="table table-striped table-bordered dataTable text-center" style="width: 100%;"
+                        <table id="example" style="font-size: 11px; font-family: tahoma; width: 100%;" class="table table-striped table-bordered dataTable text-center" 
                             role="grid" aria-describedby="example_info">
                            <thead>
                                <tr>
@@ -62,9 +62,9 @@
                                     <td>{{$d->jumlahSj}}</td>
                                     <td>{{$d->jumlahRfs}}</td>
                                     <td>{{$d->rak->kodeLokasi}}</td>
-                                    <td>{{$d->hargaBeli}}</td>
-                                    <td>{{$d->totalHarga}}</td>
-                                    <td>{{$d->hargaJual}}</td>
+                                    <td>@currency($d->hargaBeli)</td>
+                                    <td>@currency($d->totalHarga)</td>
+                                    <td>@currency($d->hargaJual)</td>
                                     <td>
                                     <div class="btn-group">
                                         <a href="{{route('admin.pembelianDetail.edit',$d->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
