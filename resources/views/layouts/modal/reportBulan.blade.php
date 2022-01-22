@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col">
                                 <label for="formFile" class="form-label">Pilih Bulan</label>
-                                <select name="month" id="month" class="form-select form-select-sm mb-3" required>
+                                <select name="month" id="month" class="form-select form-select-sm mb-3 select2" required>
                                     <option value="">Pilih Bulan</option>
                                     <option value="01">Januari</option>
                                     <option value="02">Februari</option>
