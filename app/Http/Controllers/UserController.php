@@ -53,7 +53,7 @@ class UserController extends Controller
         if ($req->foto) {
             $name = $req->file('foto')->getClientOriginalName();
 
-            $req->file('foto')->store('public/user');
+            $req->file('foto')->storeAs('public/user',$name);
             $input['foto'] = $name;
         }
 
