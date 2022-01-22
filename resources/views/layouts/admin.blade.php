@@ -606,25 +606,25 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon"><i class="bi bi-server"></i>
+                    <a href="javascript:;" class="has-arrow" style="background-color: rgb(98, 185, 255);">
+                        <div class="parent-icon" style="color: white;"><i class="bi bi-server"></i>
                         </div>
-                        <div class="menu-title">Master Data</div>
+                        <div class="menu-title" style="color: white;">Master Data</div>
                     </a>
                     <ul>
-                        <li class="{{ Request::is('admin/user/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.user.index')}}"><i class="bi bi-arrow-right-short"></i>User</a>
+                        <li class="{{ Request::is('admin/user/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.user.index')}}"><i style="color: white;" class="bi bi-arrow-right-short"></i>User</a>
                         </li>
-                        <li class="{{ Request::is('admin/sparepart/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.sparepart.index')}}"><i class="bi bi-arrow-right-short"></i>Sparepart</a>
+                        <li class="{{ Request::is('admin/sparepart/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.sparepart.index')}}"><i style="color: white;" class="bi bi-arrow-right-short"></i>Sparepart</a>
                         </li>
-                        <li class="{{ Request::is('admin/rak/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.rak.index')}}"><i class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
+                        <li class="{{ Request::is('admin/rak/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.rak.index')}}"><i style="color: white;" class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon"><i class="bi bi-clipboard-data"></i>
+                    <a href="javascript:;" class="has-arrow" style="background-color: rgb(147, 148, 189);">
+                        <div class="parent-icon" style="color: white;"><i class="bi bi-clipboard-data"></i>
                         </div>
-                        <div class="menu-title">Transaksi</div>
+                        <div class="menu-title" style="color: white;">Transaksi</div>
                     </a>
                     <ul>
                         <li class="{{ Request::is('admin/pembelian/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.pembelian.index')}}"><i class="bi bi-arrow-right-short"></i>Penerimaan</a>
