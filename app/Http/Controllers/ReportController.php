@@ -113,6 +113,22 @@ class ReportController extends Controller
         return $pdf->stream('Laporan Semua Penjualan.pdf');
     }
 
+    public function penjualanOne($id)
+    {
+        $data = Penjualan::whereId($id)->get();
+
+        $data->map(function($item){
+            $item['span'] = $item->penjualan_detail->count() + 1;
+            return $item;
+        });
+        $now = $this->now;
+        $ttdName = $this->ttdName;
+        $pdf = PDF::loadView('admin.penjualan.report.one', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Laporan Transaksi Penjualan.pdf');
+    }
+
 
 
     public function kegiatanYear(Request $request)
