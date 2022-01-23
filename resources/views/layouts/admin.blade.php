@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="{{asset('iziToast/iziToast.css')}}" rel="stylesheet">
-
+    <link href="{{asset('select2/select2.min.css')}}" rel="stylesheet">
     <!-- loader-->
     <link href="{{asset('assets/css/pace.min.css')}}" rel="stylesheet" />
 
@@ -992,6 +992,7 @@
     <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
     <script src="{{asset('iziToast/iziToast.js')}}"></script>
+    <script src="{{asset('select2/select2.min.js')}}"></script>
     <!--app-->
     <script src="{{asset('assets/js/app.js')}}"></script>
     <script src="{{asset('assets/js/index.js')}}"></script>
@@ -1005,6 +1006,7 @@
             $('#example').DataTable({
                 scrollX: true
             });
+            $('.select2').select2();
         } );
     </script>
     @include('layouts.alert')

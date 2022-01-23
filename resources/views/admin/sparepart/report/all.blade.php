@@ -124,9 +124,9 @@
                         <th>Part Status</th>
                         <th>HET</th>
                         <th>Harga Pokok</th>
-                        <th>MOQ DK</th>
+                        {{-- <th>MOQ DK</th>
                         <th>MOQ DM</th>
-                        <th>MOQ DB</th>
+                        <th>MOQ DB</th> --}}
                         <th>Part Number Type</th>
                         <th>Part Moving</th>
                         <th>Part Source</th>
@@ -148,9 +148,9 @@
                          <td>{{$d->partStatus}}</td>
                          <td>@currency($d->HET)</td>
                          <td>@currency($d->hargaPokok)</td>
-                         <td>{{$d->moqDk}}</td>
+                         {{-- <td>{{$d->moqDk}}</td>
                          <td>{{$d->moqDm}}</td>
-                         <td>{{$d->moqDb}}</td>
+                         <td>{{$d->moqDb}}</td> --}}
                          <td>{{$d->partNumberType}}</td>
                          <td>{{$d->partMoving}}</td>
                          <td>{{$d->partSource}}</td>

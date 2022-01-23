@@ -24,7 +24,7 @@
          <div class="row">
             <div class="mb-3 col">
                 <label for="formFile" class="form-label">Sparepart</label>
-                <select name="sparepart_id" id="" class="form-select form-select-sm mb-3" required>
+                <select name="sparepart_id" id="" class="form-select form-select-sm mb-3 select2" required>
                     @foreach ($sparepart as $d)
                     <option value="">Pilih Sparepart</option>
                     <option value="{{$d->id}}" {{$pembelianDetail->sparepart_id ==  $d->id ? 'selected' : ''}}>{{$d->partNumber}} - {{$d->deskripsi}}</option>
@@ -33,7 +33,7 @@
             </div>
             <div class="mb-3 col">
                 <label for="formFile" class="form-label">Rak</label>
-                <select name="rak_id" id="" class="form-select form-select-sm mb-3" required>
+                <select name="rak_id" id="" class="form-select form-select-sm mb-3 select2" required>
                     @foreach ($rak as $d)
                     <option value="">Pilih Rak</option>
                     <option value="{{$d->id}}" {{$pembelianDetail->rak_id ==  $d->id ? 'selected' : ''}}>{{$d->kodeLokasi}} - {{$d->gudang}}</option>
@@ -51,7 +51,7 @@
                 <input class="form-control form-control-sm mb-3" type="number" name="jumlahSj" value="{{$pembelianDetail->jumlahSj}}" placeholder="Quantity" aria-label="default input example" required>
             </div>
             <div class="mb-3 col">
-                <label for="formFile" class="form-label">Harga Jual/Pcs</label>
+                <label for="formFile" class="form-label">Harga Jual/Pcs (+ 20% dari harga beli)</label>
                 <input class="form-control form-control-sm mb-3" type="number" name="hargaJual" value="{{$pembelianDetail->hargaJual}}" placeholder="Harga Jual/Pcs" aria-label="default input example" required>
             </div>
         </div>

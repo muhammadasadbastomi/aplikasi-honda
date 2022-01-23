@@ -58,12 +58,16 @@
                         <label for="formFile" class="form-label">harga Pokok</label>
                         <input class="form-control form-control-sm mb-3" type="text" name="hargaPokok" value="{{$sparepart->hargaPokok}}" placeholder="harga Pokok" id="formFile" required>
                 </div>
-                <div class="mb-3 col">
+                {{-- <div class="mb-3 col">
                         <label for="formFile" class="form-label">MOQ DK</label>
                         <input class="form-control form-control-sm mb-3" type="text" name="moqDk" value="{{$sparepart->moqDk}}" placeholder="MOQ DK" id="formFile" required>
+                    </div> --}}
+                <div class="mb-3 col">
+                        <label for="formFile" class="form-label">part Number Type</label>
+                        <input class="form-control form-control-sm mb-3" type="text" name="partNumberType" value="{{$sparepart->partNumberType}}" placeholder="part Number Type" id="formFile" required>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="mb-3 col">
                         <label for="formFile" class="form-label">MOQ DM</label>
                         <input class="form-control form-control-sm mb-3" type="text" name="moqDm" value="{{$sparepart->moqDm}}" placeholder="MOQ DM" id="formFile" required>
@@ -72,11 +76,7 @@
                         <label for="formFile" class="form-label">MOQ DB</label>
                         <input class="form-control form-control-sm mb-3" type="text" name="moqDb" value="{{$sparepart->moqDb}}" placeholder="MOQ DB" id="formFile" required>
                 </div>
-                <div class="mb-3 col">
-                        <label for="formFile" class="form-label">part Number Type</label>
-                        <input class="form-control form-control-sm mb-3" type="text" name="partNumberType" value="{{$sparepart->partNumberType}}" placeholder="part Number Type" id="formFile" required>
-                </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="mb-3 col">
                         <label for="formFile" class="form-label">part Moving</label>

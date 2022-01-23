@@ -24,18 +24,18 @@
         <div class="row">
             <div class="mb-3 col">
                 <label for="formFile" class="form-label">Sparepart</label>
-                <select name="sparepart_id" id="" class="form-select form-select-sm mb-3" required>
-                    @foreach ($sparepart as $d)
+                <select name="sparepart_id" id="sparepart_id" class="form-select form-select-sm mb-3 select2" required>
                     <option value="">Pilih Sparepart</option>
-                    <option value="{{$d->id}}">{{$d->partNumber}} - {{$d->deskripsi}}</option>
+                    @foreach ($sparepart as $d)
+                    <option value="{{$d->id}}" data-beli="{{$d->hargaPokok}}" data-harga="{{$d->hargaJual}}">{{$d->partNumber}} - {{$d->deskripsi}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3 col">
                 <label for="formFile" class="form-label">Rak</label>
-                <select name="rak_id" id="" class="form-select form-select-sm mb-3" required>
-                    @foreach ($rak as $d)
+                <select name="rak_id" id="" class="form-select form-select-sm mb-3 select2" required>
                     <option value="">Pilih Rak</option>
+                    @foreach ($rak as $d)
                     <option value="{{$d->id}}">{{$d->kodeLokasi}} - {{$d->gudang}}</option>
                     @endforeach
                 </select>
@@ -44,15 +44,15 @@
         <div class="row">
             <div class="mb-3 col">
                 <label for="formFile" class="form-label">Harga Beli/Pcs</label>
-                <input class="form-control form-control-sm mb-3" type="number" name="hargaBeli" placeholder="Harga Beli/Pcs" aria-label="default input example" required>
+                <input class="form-control form-control-sm mb-3" type="number" name="hargaBeli" id="hargaBeli" placeholder="Harga Beli/Pcs" aria-label="default input example" required readonly>
             </div>
             <div class="mb-3 col">
                 <label for="formFile" class="form-label">Quantity</label>
                 <input class="form-control form-control-sm mb-3" type="number" name="jumlahSj" placeholder="Quantity" aria-label="default input example" required>
             </div>
             <div class="mb-3 col">
-                <label for="formFile" class="form-label">Harga Jual/Pcs</label>
-                <input class="form-control form-control-sm mb-3" type="number" name="hargaJual" placeholder="Harga Jual/Pcs" aria-label="default input example" required>
+                <label for="formFile" class="form-label">Harga Jual/Pcs (+ 20% dari harga beli)</label>
+                <input class="form-control form-control-sm mb-3" type="number" name="hargaJual" id="hargaJual" placeholder="Harga Jual/Pcs" aria-label="default input example" required readonly>
             </div>
         </div>
     </div>
@@ -65,3 +65,14 @@
 </form>
 </div>
 @endsection
+@push('script')
+    <script>
+        $('#sparepart_id').change(function(){
+        let harga = $("#sparepart_id").find(':selected').data('harga')
+        let beli = $("#sparepart_id").find(':selected').data('beli')
+
+        $('#hargaJual').val(harga)
+        $('#hargaBeli').val(beli)
+        });
+    </script>
+@endpush

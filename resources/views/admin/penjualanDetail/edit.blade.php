@@ -24,7 +24,7 @@
          <div class="row">
             <div class="mb-3 col">
                 <label for="formFile" class="form-label">Sparepart</label>
-                <select name="sparepart_id" id="sparepart_id" class="form-select form-select-sm mb-3" required>
+                <select name="sparepart_id" id="sparepart_id" class="form-select form-select-sm mb-3 select2" required>
                     @foreach ($sparepart as $d)
                     <option value="">Pilih Sparepart</option>
                     <option value="{{$d->id}}" {{$penjualanDetail->sparepart_id ==  $d->id ? 'selected' : ''}} data-harga="{{$d->hargaJual}}">{{$d->partNumber}} - {{$d->deskripsi}} | Stok : {{$d->jumlahStok}}</option>

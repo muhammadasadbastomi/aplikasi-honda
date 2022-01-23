@@ -34,6 +34,11 @@ class PembelianDetailController extends Controller
     {
         $pembelian =  Pembelian::findOrFail($id);
         $sparepart = Sparepart::all();
+        $sparepart->map(function($item){
+            $value = $item->hargaPokok * 25/100;
+            $item['hargaJual'] = $item->hargaPokok + $value;
+            return $item;
+        });
         $rak = Rak::all();
         // $date = Carbon::now()->format('Ym');
         // $noTransaksi = 'RC'.random_int(100000, 999999).$date;
