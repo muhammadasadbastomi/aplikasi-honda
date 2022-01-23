@@ -61,6 +61,8 @@ class PenjualanController extends Controller
             if($diskon){
                 $diskonHarga = $harga * $diskon / 100;
                 $harga = $harga - $diskonHarga;
+            }else{
+                $item['diskon'] = 0;
             }
             $item['hargaTotal'] = $harga;
 

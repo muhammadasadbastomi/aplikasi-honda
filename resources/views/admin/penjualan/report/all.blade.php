@@ -150,6 +150,8 @@
                                 if($diskon){
                                     $diskonHarga = $harga * $diskon / 100;
                                     $harga = $harga - $diskonHarga;
+                                }else{
+                                    $diskon = 0;
                                 }
                                 @endphp
                                 <td>
