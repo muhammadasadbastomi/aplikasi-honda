@@ -68,7 +68,7 @@ class UserController extends Controller
             $user->delete();
             return back()->withSuccess('Data berhasil dihapus');
         } catch (Exception $exception) {
-            return notify()->warning($exception->getMessage());
+            return back()->withErrors('Data gagal dihapus');
         }
 
     }
