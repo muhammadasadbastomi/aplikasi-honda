@@ -16,7 +16,7 @@ class CreatePembelianDetailsTable extends Migration
         Schema::create('pembelian_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pembelian_id');
-            $table->foreign('pembelian_id')->references('id')->on('pembelians')->onDelete('restrict');
+            $table->foreign('pembelian_id')->references('id')->on('pembelians')->onDelete('cascade');
             $table->unsignedBigInteger('sparepart_id');
             $table->foreign('sparepart_id')->references('id')->on('spareparts')->onDelete('restrict');
             $table->unsignedBigInteger('rak_id');
