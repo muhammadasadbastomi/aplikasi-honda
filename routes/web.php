@@ -5,6 +5,8 @@ use App\Http\Controllers\RakController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PromoController;
+use App\Http\Controllers\ReturController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembelianController;
@@ -50,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create/{id}', [PembelianDetailController::class, 'create'])->name('create');
         });
         Route::resource('stok', StokController::class);
+        Route::resource('promo', PromoController::class);
+        Route::resource('retur', ReturController::class);
         Route::resource('penjualan', PenjualanController::class);
         Route::resource('penjualanDetail', PenjualanDetailController::class)->except('index','create');
         Route::name('penjualanDetail.')->prefix('penjualanDetail')->group(function(){
@@ -83,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/cetak/stok', [ReportController::class, 'stokAll'])->name('stokAll');
             Route::get('/cetak/stok-hampir-habis', [ReportController::class, 'stokLow'])->name('stokLow');
 
+            Route::get('/cetak/promo', [ReportController::class, 'promoAll'])->name('promoAll');
             Route::get('/cetak/pembelian', [ReportController::class, 'pembelianAll'])->name('pembelianAll');
             Route::get('/cetak/penjualan', [ReportController::class, 'penjualanAll'])->name('penjualanAll');
             Route::get('/cetak/penjualan/{id}', [ReportController::class, 'penjualanOne'])->name('penjualanOne');

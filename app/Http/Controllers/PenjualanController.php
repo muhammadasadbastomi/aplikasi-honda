@@ -16,7 +16,7 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $data = Penjualan::all();
+        $data = Penjualan::all()->sortByDesc('tanggalPenjualan');
 
 
         return view('admin.penjualan.index',compact('data'));
@@ -44,7 +44,8 @@ class PenjualanController extends Controller
     {
         $penjualan = Penjualan::create($request->all());
 
-        return redirect()->route('admin.penjualan.show',$penjualan->id)->withSuccess('Data berhasil disimpan');
+        
+        return redirect()->route('admin.penjualanDetail.create',$penjualan->id)->withSuccess('Data berhasil disimpan');
     }
 
     /**

@@ -5,30 +5,30 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{asset('assets/images/favicon-32x32.png')}}" type="image/png" />
+    <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
-    <link href="{{asset('assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
     <!-- Bootstrap CSS -->
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/css/bootstrap-extended.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/bootstrap-extended.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link href="{{asset('iziToast/iziToast.css')}}" rel="stylesheet">
-    <link href="{{asset('select2/select2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('iziToast/iziToast.css') }}" rel="stylesheet">
+    <link href="{{ asset('select2/select2.min.css') }}" rel="stylesheet">
     <!-- loader-->
-    <link href="{{asset('assets/css/pace.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet" />
 
     <!--Theme Styles-->
-    <link href="{{asset('assets/css/dark-theme.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/css/light-theme.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/css/semi-dark.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/css/header-colors.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/dark-theme.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/light-theme.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/semi-dark.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/header-colors.css') }}" rel="stylesheet" />
     @yield('css')
 
     <title>Aplikasi Stok Dan Penjualan Sparepart Sepeda Motor Honda Pada AHASS Haji As</title>
@@ -80,19 +80,21 @@
                             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                                 data-bs-toggle="dropdown">
                                 <div class="user-setting d-flex align-items-center gap-1">
-                                    <img src="{{asset('storage/user/'.Auth::user()->foto)}}" class="user-img" alt="">
-                                    <div class="user-name d-none d-sm-block">{{Auth::user()->nama}}</div>
+                                    <img src="{{ asset('storage/user/' . Auth::user()->foto) }}" class="user-img"
+                                        alt="">
+                                    <div class="user-name d-none d-sm-block">{{ Auth::user()->nama }}</div>
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <a class="dropdown-item" href="#">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{asset('storage/user/'.Auth::user()->foto)}}" alt=""
-                                                class="rounded-circle" width="60" height="60">
+                                            <img src="{{ asset('storage/user/' . Auth::user()->foto) }}"
+                                                alt="" class="rounded-circle" width="60" height="60">
                                             <div class="ms-3">
-                                                <h6 class="mb-0 dropdown-user-name">{{Auth::user()->nama}}</h6>
-                                                <small class="mb-0 dropdown-user-designation text-secondary">{{Auth::user()->username}}</small>
+                                                <h6 class="mb-0 dropdown-user-name">{{ Auth::user()->nama }}</h6>
+                                                <small
+                                                    class="mb-0 dropdown-user-designation text-secondary">{{ Auth::user()->username }}</small>
                                             </div>
                                         </div>
                                     </a>
@@ -595,7 +597,7 @@
         <aside class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
                 <div>
-                    <img src="{{asset('assets/images/logo-icon.png')}}" class="logo-icon" alt="logo icon">
+                    <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
                 </div>
                 <div>
                     <h4 class="logo-text">Skodash</h4>
@@ -612,11 +614,17 @@
                         <div class="menu-title" style="color: white;">Master Data</div>
                     </a>
                     <ul>
-                        <li class="{{ Request::is('admin/user/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.user.index')}}"><i style="color: white;" class="bi bi-arrow-right-short"></i>User</a>
+                        <li class="{{ Request::is('admin/user/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.user.index') }}"><i style="color: white;"
+                                    class="bi bi-arrow-right-short"></i>User</a>
                         </li>
-                        <li class="{{ Request::is('admin/sparepart/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.sparepart.index')}}"><i style="color: white;" class="bi bi-arrow-right-short"></i>Sparepart</a>
+                        <li class="{{ Request::is('admin/sparepart/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.sparepart.index') }}"><i style="color: white;"
+                                    class="bi bi-arrow-right-short"></i>Sparepart</a>
                         </li>
-                        <li class="{{ Request::is('admin/rak/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.rak.index')}}"><i style="color: white;" class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
+                        <li class="{{ Request::is('admin/rak/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.rak.index') }}"><i style="color: white;"
+                                    class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
                         </li>
                     </ul>
                 </li>
@@ -627,11 +635,25 @@
                         <div class="menu-title" style="color: white;">Transaksi</div>
                     </a>
                     <ul>
-                        <li class="{{ Request::is('admin/pembelian/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.pembelian.index')}}"><i class="bi bi-arrow-right-short"></i>Penerimaan</a>
+                        <li class="{{ Request::is('admin/promo/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.promo.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Promo</a>
                         </li>
-                        <li class="{{ Request::is('admin/stok/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.stok.index')}}"><i class="bi bi-arrow-right-short"></i>Stok</a>
+                        <li class="{{ Request::is('admin/pembelian/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.pembelian.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Penerimaan</a>
                         </li>
-                        <li class="{{ Request::is('admin/penjualan/*') ? 'mm-active' : '' }}"> <a href="{{route('admin.penjualan.index')}}"><i class="bi bi-arrow-right-short"></i>Penjualan</a>
+                        <li class="{{ Request::is('admin/stok/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.stok.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Stok</a>
+                        </li>
+                        <li class="{{ Request::is('admin/penjualan/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.penjualan.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Penjualan</a>
+                        </li>
+                        <li class="{{ Request::is('admin/retur/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.retur.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Retur</a>
                         </li>
                     </ul>
                 </li>
@@ -970,36 +992,36 @@
         <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
 
-        
+
 
     </div>
     <!--end wrapper-->
 
 
     <!-- Bootstrap bundle JS -->
-    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
-    <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/easyPieChart/jquery.easypiechart.js')}}"></script>
-    <script src="{{asset('assets/plugins/peity/jquery.peity.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
-    <script src="{{asset('assets/js/pace.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
-    <script src="{{asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
-    <script src="{{asset('iziToast/iziToast.js')}}"></script>
-    <script src="{{asset('select2/select2.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/easyPieChart/jquery.easypiechart.js') }}"></script>
+    <script src="{{ asset('assets/plugins/peity/jquery.peity.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/js/pace.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+    <script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('iziToast/iziToast.js') }}"></script>
+    <script src="{{ asset('select2/select2.min.js') }}"></script>
     <!--app-->
-    <script src="{{asset('assets/js/app.js')}}"></script>
-    <script src="{{asset('assets/js/index.js')}}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/index.js') }}"></script>
 
     <script>
         new PerfectScrollbar(".best-product")
-     new PerfectScrollbar(".top-sellers-list")
+        new PerfectScrollbar(".top-sellers-list")
     </script>
     <script>
         $(document).ready(function() {
@@ -1007,7 +1029,7 @@
                 scrollX: true
             });
             $('.select2').select2();
-        } );
+        });
     </script>
     @include('layouts.alert')
     @include('layouts.alert_error')
