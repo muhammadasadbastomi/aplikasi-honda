@@ -48,7 +48,7 @@
                             placeholder="kode Group Sales" aria-label="default input example" required>
                     </div> --}}
                     <div class="mb-3 col">
-                        <label for="formFile" class="form-label">part Status</label>
+                        <label for="formFile" class="form-label">Part Status</label>
                         <input class="form-control form-control-sm mb-3" type="text" name="partStatus"
                             placeholder="part Status" aria-label="default input example" required>
                     </div>
@@ -60,7 +60,7 @@
                             aria-label="default input example" required>
                     </div>
                     <div class="mb-3 col">
-                        <label for="formFile" class="form-label">harga Pokok</label>
+                        <label for="formFile" class="form-label">Harga Pokok</label>
                         <input class="form-control form-control-sm mb-3" type="text" name="hargaPokok"
                             placeholder="harga Pokok" id="formFile" required>
                     </div>

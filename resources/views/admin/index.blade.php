@@ -1,92 +1,91 @@
 @extends('layouts.admin')
 @section('content')
-
-<div class="row">
-    <div class="col-12 d-flex">
-        <div class="card radius-10 w-100">
-           <div class="card-header text-center">
-               <h5>Selamat Datang Di Aplikasi Stok Dan Penjualan Sparepart Sepeda Motor Honda Pada AHASS Haji As</h5>
-           </div>
-        </div>
-    </div>
-</div>
-
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-4">
-    <div class="col">
-        <div class="card radius-10">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 text-secondary">Total Transaksi</p>
-                        <h4 class="my-1">{{$totalTransaksi}}</h4>
-                        {{-- <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 5% from
-                            last week</p> --}}
-                    </div>
-                    <div class="widget-icon-large bg-gradient-purple text-white ms-auto"><i
-                            class="bi bi-basket2-fill"></i>
-                    </div>
+    <div class="row">
+        <div class="col-12 d-flex">
+            <div class="card radius-10 w-100">
+                <div class="card-header text-center">
+                    <h5>Selamat Datang Di Aplikasi Stok Dan Penjualan Sparepart Sepeda Motor Honda Pada AHASS Haji As</h5>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col">
-        <div class="card radius-10">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 text-secondary">Total Penjualan</p>
-                        <h4 class="my-1">{{$totalPenjualan}}</h4>
-                        {{-- <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 4.6 from
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-4">
+        <div class="col">
+            <div class="card radius-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Transaksi</p>
+                            <h4 class="my-1">{{ $totalTransaksi }}</h4>
+                            {{-- <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 5% from
                             last week</p> --}}
-                    </div>
-                    <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i
-                            class="bi bi-currency-exchange"></i>
+                        </div>
+                        <div class="widget-icon-large bg-gradient-purple text-white ms-auto"><i
+                                class="bi bi-basket2-fill"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="card radius-10">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 text-secondary">Total Pembelian</p>
-                        <h4 class="my-1">{{$totalPembelian}}</h4>
-                        {{-- <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 12.2% from
+        <div class="col">
+            <div class="card radius-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Penjualan</p>
+                            <h4 class="my-1">{{ $totalPenjualan }}</h4>
+                            {{-- <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 4.6 from
                             last week</p> --}}
-                    </div>
-                    <div class="widget-icon-large bg-gradient-info text-white ms-auto"><i
-                            class="bi bi-bar-chart-line-fill"></i>
+                        </div>
+                        <div class="widget-icon-large bg-gradient-success text-white ms-auto"><i
+                                class="bi bi-currency-exchange"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="card radius-10">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-0 text-secondary">Total User</p>
-                        <h4 class="my-1">{{$totalUser}}</h4>
-                        {{-- <p class="mb-0 font-13 text-danger"><i class="bi bi-caret-down-fill"></i> 2.7 from
+        <div class="col">
+            <div class="card radius-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Pembelian</p>
+                            <h4 class="my-1">{{ $totalPembelian }}</h4>
+                            {{-- <p class="mb-0 font-13 text-success"><i class="bi bi-caret-up-fill"></i> 12.2% from
                             last week</p> --}}
-                    </div>
-                    <div class="widget-icon-large bg-gradient-danger text-white ms-auto"><i
-                            class="bi bi-people-fill"></i>
+                        </div>
+                        <div class="widget-icon-large bg-gradient-info text-white ms-auto"><i
+                                class="bi bi-bar-chart-line-fill"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col">
+            <div class="card radius-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total User</p>
+                            <h4 class="my-1">{{ $totalUser }}</h4>
+                            {{-- <p class="mb-0 font-13 text-danger"><i class="bi bi-caret-down-fill"></i> 2.7 from
+                            last week</p> --}}
+                        </div>
+                        <div class="widget-icon-large bg-gradient-danger text-white ms-auto"><i
+                                class="bi bi-people-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    
-</div>
-<!--end row-->
+    <!--end row-->
 
 
 
-<div class="row">
+    {{-- <div class="row">
     <div class="col-12 d-flex">
         <div class="card radius-10 w-100">
             <div class="card-body">
@@ -107,8 +106,8 @@
             </div>
         </div>
     </div>
-</div>
-{{-- <div class="row">
+</div> --}}
+    {{-- <div class="row">
     <div class="col-12 col-lg-8 col-xl-8 d-flex">
         <div class="card radius-10 w-100">
             <div class="card-body">
@@ -981,31 +980,36 @@
         </div>
     </div>
 </div> --}}
-
-
 @endsection
 @section('script')
     <script>
         var options = {
-        chart: {
-            type: 'line'
-        },
-        series: [
-        {
-            name: 'Penjualan',
-            data: [{{$Jan}},{{$Feb}},{{$Mar}},{{$Apr}},{{$Mei}},{{$Jun}},{{$Jul}},{{$Agu}},{{$Sep}},{{$Okt}},{{$Nov}},{{$Des}}]
-        },
-        {
-            name: 'Pembelian',
-            data: [{{$countJan}},{{$countFeb}},{{$countMar}},{{$countApr}},{{$countMei}},{{$countJun}},{{$countJul}},{{$countAgu}},{{$countSep}},{{$countOkt}},{{$countNov}},{{$countDes}}]
-        }
-        ],
-        xaxis: {
-            categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November','Desember'],
-            title: {
-                text: 'Month'
+            chart: {
+                type: 'line'
+            },
+            series: [{
+                    name: 'Penjualan',
+                    data: [{{ $Jan }}, {{ $Feb }}, {{ $Mar }}, {{ $Apr }},
+                        {{ $Mei }}, {{ $Jun }}, {{ $Jul }}, {{ $Agu }},
+                        {{ $Sep }}, {{ $Okt }}, {{ $Nov }}, {{ $Des }}
+                    ]
+                },
+                {
+                    name: 'Pembelian',
+                    data: [{{ $countJan }}, {{ $countFeb }}, {{ $countMar }}, {{ $countApr }},
+                        {{ $countMei }}, {{ $countJun }}, {{ $countJul }}, {{ $countAgu }},
+                        {{ $countSep }}, {{ $countOkt }}, {{ $countNov }}, {{ $countDes }}
+                    ]
+                }
+            ],
+            xaxis: {
+                categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
+                    'Oktober', 'November', 'Desember'
+                ],
+                title: {
+                    text: 'Month'
+                }
             }
-        }
         }
 
         var chart = new ApexCharts(document.querySelector("#salesOrder"), options);
