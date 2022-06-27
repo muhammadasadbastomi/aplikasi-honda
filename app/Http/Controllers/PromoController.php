@@ -16,7 +16,7 @@ class PromoController extends Controller
      */
     public function index()
     {
-        $data = Promo::all();
+        $data = Promo::latest()->get();
         
 
         return view('admin.promo.index',compact('data'));
@@ -29,7 +29,7 @@ class PromoController extends Controller
      */
     public function create()
     {
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::latest()->get();
         return view('admin.promo.create',compact('sparepart'));
     }
 
@@ -65,7 +65,7 @@ class PromoController extends Controller
      */
     public function edit(Promo $promo)
     {
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::latest()->get();
         return view('admin.promo.edit',compact('promo','sparepart'));
     }
 

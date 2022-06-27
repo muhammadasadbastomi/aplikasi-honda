@@ -16,7 +16,7 @@ class ReturController extends Controller
      */
     public function index()
     {
-        $data = Retur::all();
+        $data = Retur::latest()->get();
         
 
         return view('admin.retur.index',compact('data'));
@@ -29,7 +29,7 @@ class ReturController extends Controller
      */
     public function create()
     {
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::latest()->get();
         return view('admin.retur.create',compact('sparepart'));
     }
 
@@ -65,7 +65,7 @@ class ReturController extends Controller
      */
     public function edit(Retur $retur)
     {
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::latest()->get();
         return view('admin.retur.edit',compact('retur','sparepart'));
     }
 

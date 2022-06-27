@@ -16,7 +16,7 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        $data = Pembelian::all();
+        $data = Pembelian::latest()->get();
 
         return view('admin.pembelian.index',compact('data'));
     }

@@ -15,7 +15,7 @@ class RakController extends Controller
      */
     public function index()
     {
-        $data = Rak::all();
+        $data = Rak::latest()->get();
 
         return view('admin.rak.index',compact('data'));
     }

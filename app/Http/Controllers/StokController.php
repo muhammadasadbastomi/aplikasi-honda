@@ -14,7 +14,7 @@ class StokController extends Controller
      */
     public function index()
     {
-        $data = Stok::all();
+        $data = Stok::latest()->get();
         // $data->map(function($item){
         //     $sparepart = $item->sparepart;
         //     $hargaMin = $sparepart->pembelian_detail->min('hargaJual');

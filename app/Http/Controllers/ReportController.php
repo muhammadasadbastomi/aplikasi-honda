@@ -27,7 +27,7 @@ class ReportController extends Controller
     }
     public function userAll()
     {
-        $data = User::all();
+        $data = User::latest()->get();
         $now = $this->now;
         $ttdName = $this->ttdName;
         $pdf = PDF::loadView('admin.user.report.userAll', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
@@ -38,7 +38,7 @@ class ReportController extends Controller
 
     public function sparepartAll()
     {
-        $data = Sparepart::all();
+        $data = Sparepart::latest()->get();
         $now = $this->now;
         $ttdName = $this->ttdName;
         $pdf = PDF::loadView('admin.sparepart.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
@@ -49,7 +49,7 @@ class ReportController extends Controller
 
     public function rakAll()
     {
-        $data = Rak::all();
+        $data = Rak::latest()->get();
         $now = $this->now;
         $ttdName = $this->ttdName;
         $pdf = PDF::loadView('admin.rak.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
@@ -60,7 +60,7 @@ class ReportController extends Controller
 
     public function stokAll()
     {
-        $data = Stok::all();
+        $data = Stok::latest()->get();
         $now = $this->now;
         $ttdName = $this->ttdName;
         $pdf = PDF::loadView('admin.stok.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
@@ -83,7 +83,7 @@ class ReportController extends Controller
 
     public function pembelianAll()
     {
-        $data = Pembelian::all();
+        $data = Pembelian::latest()->get();
 
         $data->map(function($item){
             $item['span'] = $item->pembelian_detail->count() + 1;
@@ -99,7 +99,7 @@ class ReportController extends Controller
 
     public function penjualanAll()
     {
-        $data = Penjualan::all();
+        $data = Penjualan::latest()->get();
 
         $data->map(function($item){
             $item['span'] = $item->penjualan_detail->count() + 1;
@@ -202,7 +202,7 @@ class ReportController extends Controller
     }
     public function konflikAll()
     {
-        $data = Konflik::all();
+        $data = Konflik::latest()->get();
         $now = $this->now;
         $pdf = PDF::loadView('admin.report.konflikAll', ['data' => $data, 'now' => $now]);
         $pdf->setPaper('a4', 'landscape');
@@ -281,7 +281,7 @@ class ReportController extends Controller
     }
     public function gangguanAll()
     {
-        $data = Gangguan::all();
+        $data = Gangguan::latest()->get();
         $now = $this->now;
         $pdf = PDF::loadView('admin.report.gangguanAll', ['data' => $data, 'now' => $now]);
         $pdf->setPaper('a4', 'landscape');
@@ -359,7 +359,7 @@ class ReportController extends Controller
     }
     public function kriminalAll()
     {
-        $data = Kriminal::all();
+        $data = Kriminal::latest()->get();
         $now = $this->now;
         $pdf = PDF::loadView('admin.report.kriminalAll', ['data' => $data, 'now' => $now]);
         $pdf->setPaper('a4', 'landscape');
@@ -436,9 +436,9 @@ class ReportController extends Controller
     {
         $now = $this->now;
 
-        $konflik = Konflik::all()->count();
-        $gangguan = Gangguan::all()->count();
-        $kriminal = Kriminal::all()->count();
+        $konflik = Konflik::latest()->get()->count();
+        $gangguan = Gangguan::latest()->get()->count();
+        $kriminal = Kriminal::latest()->get()->count();
         return view('admin.report.grafik', compact('now', 'konflik', 'gangguan', 'kriminal'));
         // $pdf = PDF::loadView('admin.report.grafik', compact('now', 'konflik', 'gangguan', 'kriminal'));
         // $pdf->setPaper('a4', 'landscape');
@@ -450,7 +450,7 @@ class ReportController extends Controller
     public function petugas()
     {
         $now = $this->now;
-        $data = Petugas::all();
+        $data = Petugas::latest()->get();
         // return view('admin.report.grafik', compact('now', 'konflik', 'gangguan', 'kriminal'));
         $pdf = PDF::loadView('admin.report.petugas', compact('now', 'data'));
         $pdf->setPaper('a4', 'landscape');
@@ -462,7 +462,7 @@ class ReportController extends Controller
     public function camat()
     {
         $now = $this->now;
-        $data = Camat::all();
+        $data = Camat::latest()->get();
         // return view('admin.report.grafik', compact('now', 'konflik', 'gangguan', 'kriminal'));
         $pdf = PDF::loadView('admin.report.camat', compact('now', 'data'));
         $pdf->setPaper('a4', 'landscape');
@@ -474,7 +474,7 @@ class ReportController extends Controller
     public function kasi()
     {
         $now = $this->now;
-        $data = Kasi::all();
+        $data = Kasi::latest()->get();
         // return view('admin.report.grafik', compact('now', 'konflik', 'gangguan', 'kriminal'));
         $pdf = PDF::loadView('admin.report.kasi', compact('now', 'data'));
         $pdf->setPaper('a4', 'landscape');
@@ -491,7 +491,7 @@ class ReportController extends Controller
         $Rabu = Jadwal::whereHari('Rabu')->get();
         $Kamis = Jadwal::whereHari('Kamis')->get();
         $Jumat = Jadwal::whereHari('Jumat')->get();
-        $data = Jadwal::all();
+        $data = Jadwal::latest()->get();
         $pdf = PDF::loadView('admin.report.jadwal-petugas', compact('now', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'data'));
         $pdf->setPaper('a4', 'landscape');
 
@@ -501,7 +501,7 @@ class ReportController extends Controller
 
     public function suratIndex()
     {
-        $petugas = Petugas::all();
+        $petugas = Petugas::latest()->get();
         return view('admin.report.suratIndex', compact('petugas'));
     }
     public function surat(Request $request)
@@ -518,7 +518,7 @@ class ReportController extends Controller
     public function pegawai()
     {
         $now = $this->now;
-        $data = Pegawai::all();
+        $data = Pegawai::latest()->get();
         // return view('admin.report.grafik', compact('now', 'konflik', 'gangguan', 'kriminal'));
         $pdf = PDF::loadView('admin.report.pegawai', compact('now', 'data'));
         $pdf->setPaper('a4', 'landscape');

@@ -20,7 +20,7 @@ class PembelianDetailController extends Controller
      */
     // public function index()
     // {
-    //     $data = PembelianDetail::all();
+    //     $data = PembelianDetail::latest()->get();
 
     //     return view('admin.pembelianDetail.index',compact('data'));
     // }
@@ -33,13 +33,13 @@ class PembelianDetailController extends Controller
     public function create($id)
     {
         $pembelian =  Pembelian::findOrFail($id);
-        $sparepart = Sparepart::all();
+        $sparepart = Sparepart::latest()->get();
         $sparepart->map(function($item){
             $value = $item->hargaPokok * 25/100;
             $item['hargaJual'] = $item->hargaPokok + $value;
             return $item;
         });
-        $rak = Rak::all();
+        $rak = Rak::latest()->get();
         // $date = Carbon::now()->format('Ym');
         // $noTransaksi = 'RC'.random_int(100000, 999999).$date;
         return view('admin.pembelianDetail.create',compact('pembelian','sparepart','rak'));
@@ -89,8 +89,8 @@ class PembelianDetailController extends Controller
      */
     public function edit(PembelianDetail $pembelianDetail)
     {
-        $sparepart = Sparepart::all();
-        $rak = Rak::all();
+        $sparepart = Sparepart::latest()->get();
+        $rak = Rak::latest()->get();
         return view('admin.pembelianDetail.edit',compact('pembelianDetail','sparepart','rak'));
     }
 

@@ -10,16 +10,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $kegiatan = Kegiatan::all()->count();
-        // $konflik = Konflik::all()->count();
-        // $gangguan = Gangguan::all()->count();
-        // $kriminal = Kriminal::all()->count();
-        $countPembelian =  Pembelian::all()->count();
-        $countPenjualan =  Penjualan::all()->count();
+        // $kegiatan = Kegiatan::latest()->get()->count();
+        // $konflik = Konflik::latest()->get()->count();
+        // $gangguan = Gangguan::latest()->get()->count();
+        // $kriminal = Kriminal::latest()->get()->count();
+        $countPembelian =  Pembelian::latest()->get()->count();
+        $countPenjualan =  Penjualan::latest()->get()->count();
 
         $totalTransaksi = $countPembelian + $countPenjualan;
 
-        $totalUser = User::all()->count();
+        $totalUser = User::latest()->get()->count();
 
         $totalPembelian =  $countPembelian;
         $totalPenjualan =  $countPenjualan;

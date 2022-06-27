@@ -16,7 +16,7 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $data = Penjualan::all()->sortByDesc('tanggalPenjualan');
+        $data = Penjualan::latest()->get()->sortByDesc('tanggalPenjualan');
 
 
         return view('admin.penjualan.index',compact('data'));

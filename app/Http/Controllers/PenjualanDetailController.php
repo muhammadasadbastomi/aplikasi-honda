@@ -21,7 +21,7 @@ class PenjualanDetailController extends Controller
      */
     // public function index()
     // {
-    //     $data = PenjualanDetail::all();
+    //     $data = PenjualanDetail::latest()->get();
 
     //     return view('admin.penjualanDetail.index',compact('data'));
     // }
