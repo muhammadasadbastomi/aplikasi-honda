@@ -61,7 +61,8 @@
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="{{ route('admin.report.penjualanOne', $d->id) }}"
-                                                        class="btn btn-primary"><i class="bi bi-printer-fill"></i></a>
+                                                        class="btn btn-primary" target="_blank"><i
+                                                            class="bi bi-printer-fill"></i></a>
                                                     {{-- <a href="{{ route('admin.penjualan.show', $d->id) }}"
                                                         class="btn btn-primary"><i class="bi bi-eye-fill"></i></a> --}}
                                                     {{-- <a href="{{route('admin.penjualan.edit',$d->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> --}}
