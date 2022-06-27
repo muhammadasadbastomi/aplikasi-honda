@@ -21,7 +21,8 @@
                     data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30>
-                    <a class="dropdown-item" href="{{ route('admin.report.sparepartAll') }}">Cetak Keseluruhan</a>
+                    <a class="dropdown-item" href="{{ route('admin.report.sparepartAll') }}" target="_blank">Cetak
+                        Keseluruhan</a>
 
                     {{-- <div class="dropdown-divider"></div> <a class="dropdown-item" href="javascript:;">Separated link</a> --}}
                 </div>
