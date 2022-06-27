@@ -26,6 +26,7 @@
     <div class="wrapper">
 
         <!--start content-->
+        
         <main class="authentication-content">
             <div class="container">
                 <div class="mt-4">
