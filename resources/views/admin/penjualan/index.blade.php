@@ -21,7 +21,8 @@
                     data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30>
-                    <a class="dropdown-item" href="{{ route('admin.report.penjualanAll') }}">Cetak Keseluruhan</a>
+                    <a class="dropdown-item" href="{{ route('admin.report.penjualanAll') }}" target="_blank">Cetak
+                        Keseluruhan</a>
                 </div>
             </div>
         </div>
@@ -60,7 +61,8 @@
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="{{ route('admin.report.penjualanOne', $d->id) }}"
-                                                        class="btn btn-primary"><i class="bi bi-printer-fill"></i></a>
+                                                        class="btn btn-primary" target="_blank"><i
+                                                            class="bi bi-printer-fill"></i></a>
                                                     {{-- <a href="{{ route('admin.penjualan.show', $d->id) }}"
                                                         class="btn btn-primary"><i class="bi bi-eye-fill"></i></a> --}}
                                                     {{-- <a href="{{route('admin.penjualan.edit',$d->id)}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> --}}

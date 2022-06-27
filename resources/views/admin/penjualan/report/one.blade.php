@@ -111,8 +111,8 @@
         <div class="isi">
             <h2 style="text-align:center;">NOTA PENJUALAN</h2>
             <br>
-            <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center" style="font-size: 10px !important; " role="grid"
-                aria-describedby="myTable_info">
+            <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
+                style="font-size: 10px !important; " role="grid" aria-describedby="myTable_info">
                 <thead style="font-size:12px !important;">
                     <tr>
                         <th rowspan="2">No</th>
@@ -130,50 +130,50 @@
                         <th>Qty SJ (PCS)</th>
                     </tr>
                 </thead>
-                 <tbody >
-                     @foreach($data as $d)
-                     <tr>
-                         <td rowspan="{{$d->span}}">{{$loop->iteration}}</td>
-                         <td>{{carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y')}}</td>
-                         <td>{{$d->noTransaksi}}</td>
-                         <td colspan="2">{{$d->namaCustomer}}</td>
-                         @foreach($d->penjualan_detail as $d)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$d->sparepart->partNumber}}</td>
-                                <td>{{$d->sparepart->deskripsi}}</td>
-                                <td>{{$d->jumlah}}</td>
-                                <td>@currency($d->hargaJual)</td>
-                                @php 
+                <tbody>
+                    @foreach ($data as $d)
+                        <tr>
+                            <td rowspan="{{ $d->span }}">{{ $loop->iteration }}</td>
+                            <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td>
+                            <td>{{ $d->noTransaksi }}</td>
+                            <td colspan="2">{{ $d->namaCustomer }}</td>
+                            @foreach ($d->penjualan_detail as $d)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $d->sparepart->partNumber }}</td>
+                            <td>{{ $d->sparepart->deskripsi }}</td>
+                            <td>{{ $d->jumlah }}</td>
+                            <td>@currency($d->hargaJual)</td>
+                            @php
                                 $diskon = $d->diskon;
                                 $harga = $d->hargaJual * $d->jumlah;
-                                if($diskon){
-                                    $diskonHarga = $harga * $diskon / 100;
+                                if ($diskon) {
+                                    $diskonHarga = ($harga * $diskon) / 100;
                                     $harga = $harga - $diskonHarga;
-                                }else{
+                                } else {
                                     $diskon = 0;
                                 }
-                                @endphp
-                                <td>
-                                    {{$diskon}}%
-                                </td>
-                                <td>@currency($harga)</td>
-                                
-                            </tr>
-                         @endforeach
-                     </tr>
-                     @endforeach
-                 </tbody>
+                            @endphp
+                            <td>
+                                {{ $diskon }}%
+                            </td>
+                            <td>@currency($harga)</td>
+
+                        </tr>
+                    @endforeach
+                    </tr>
+                    @endforeach
+                </tbody>
             </table>
             <br>
             <br>
             <div class="ttd">
-                <p style="margin:0px"> Banjarmasin, {{$now}}</p>
-                <h6 style="margin:0px">Mengetahui</h6>
+                <p style="margin:0px"> Banjarmasin, {{ $now }}</p>
+                {{-- <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Manager</h5>
                 <br>
                 <br>
-                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5>
+                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5> --}}
                 {{-- <h5 style="margin:0px">NIP. 19710830 199101 1 002</h5> --}}
             </div>
         </div>

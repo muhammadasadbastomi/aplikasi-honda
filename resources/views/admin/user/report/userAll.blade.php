@@ -111,8 +111,8 @@
         <div class="isi">
             <h2 style="text-align:center;">LAPORAN DATA USER</h2>
             <br>
-            <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center" role="grid"
-                aria-describedby="myTable_info">
+            <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
+                role="grid" aria-describedby="myTable_info">
                 <thead>
 
                     <tr>
@@ -124,14 +124,13 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $d)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $d->nama }}</td>
+                            <td>{{ $d->username }}</td>
+                            <td>{{ carbon\carbon::parse($d->created_at)->translatedFormat('d F Y') }}</td>
 
-                    <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$d->nama}}</td>
-                        <td>{{$d->username}}</td>
-                        <td>{{carbon\carbon::parse($d->created_at)->translatedFormat('d F Y')}}</td>
-
-                    </tr>
+                        </tr>
                     @endforeach
 
                 </tbody>
@@ -139,12 +138,12 @@
             <br>
             <br>
             <div class="ttd">
-                <p style="margin:0px"> Banjarmasin, {{$now}}</p>
-                <h6 style="margin:0px">Mengetahui</h6>
+                <p style="margin:0px"> Banjarmasin, {{ $now }}</p>
+                {{-- <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Manager</h5>
                 <br>
                 <br>
-                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5>
+                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5> --}}
                 {{-- <h5 style="margin:0px">NIP. 19710830 199101 1 002</h5> --}}
             </div>
         </div>

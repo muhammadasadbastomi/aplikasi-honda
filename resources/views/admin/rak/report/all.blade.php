@@ -111,8 +111,8 @@
         <div class="isi">
             <h2 style="text-align:center;">LAPORAN DATA RAK</h2>
             <br>
-            <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center" style="font-size: 10px !important; " role="grid"
-                aria-describedby="myTable_info">
+            <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
+                style="font-size: 10px !important; " role="grid" aria-describedby="myTable_info">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -127,29 +127,29 @@
                         <th>No</th> -->
                     </tr>
                 </thead>
-                 <tbody >
-                     @foreach($data as $d)
-                     <tr>
-                         <td>{{$loop->iteration}}</td>
-                         <td>{{$d->kodeLokasi}}</td>
-                         <td>{{$d->gudang}}</td>
-                         <td>{{$d->kodeRak}}</td>
-                         <td>{{$d->kodeBinbox}}</td>
-                         <td>{{$d->keterangan}}</td>
-                     </tr>
-                     @endforeach
-                 </tbody>
-              
+                <tbody>
+                    @foreach ($data as $d)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $d->kodeLokasi }}</td>
+                            <td>{{ $d->gudang }}</td>
+                            <td>{{ $d->kodeRak }}</td>
+                            <td>{{ $d->kodeBinbox }}</td>
+                            <td>{{ $d->keterangan }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
             </table>
             <br>
             <br>
             <div class="ttd">
-                <p style="margin:0px"> Banjarmasin, {{$now}}</p>
-                <h6 style="margin:0px">Mengetahui</h6>
+                <p style="margin:0px"> Banjarmasin, {{ $now }}</p>
+                {{-- <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Manager</h5>
                 <br>
                 <br>
-                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5>
+                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5> --}}
                 {{-- <h5 style="margin:0px">NIP. 19710830 199101 1 002</h5> --}}
             </div>
         </div>
