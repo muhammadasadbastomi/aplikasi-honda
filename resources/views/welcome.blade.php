@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!-- loader-->
+    
     <link href="{{asset('assets/css/pace.min.css')}}" rel="stylesheet" />
     <link href="{{asset('iziToast/iziToast.css')}}" rel="stylesheet">
 
@@ -26,7 +27,7 @@
     <div class="wrapper">
 
         <!--start content-->
-        
+
         <main class="authentication-content">
             <div class="container">
                 <div class="mt-4">
