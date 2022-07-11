@@ -34,7 +34,7 @@
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <div id="example_wrapper" style="font-size: 9px; font-family: tahoma;"
+                <div id="example_wrapper" style="font-size: 12px; font-family: tahoma;"
                     class="dataTables_wrapper dt-bootstrap5">
                     <div class="row">
                         <div class="col-sm-12">
@@ -60,7 +60,7 @@
                                             <td>{{ carbon\carbon::parse($d->tanggalTransaksi)->translatedFormat('d F Y') }}
                                             </td>
                                             <td>{{ $d->jenisRetur }}</td>
-                                            <td>{{ $d->sparepart->deskripsi }}%</td>
+                                            <td>{{ $d->sparepart->deskripsi }}</td>
                                             <td>{{ $d->jumlahRetur }}</td>
 
                                             <td>

@@ -112,7 +112,7 @@
             <h2 style="text-align:center;">LAPORAN DATA SPAREPART</h2>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
-                style="font-size: 10px !important; " role="grid" aria-describedby="myTable_info">
+                style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
                 <thead>
                     <tr>
                         <th>No</th>

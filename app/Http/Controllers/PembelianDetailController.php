@@ -34,15 +34,15 @@ class PembelianDetailController extends Controller
     {
         $pembelian =  Pembelian::findOrFail($id);
         $sparepart = Sparepart::latest()->get();
-        $sparepart->map(function($item){
-            $value = $item->hargaPokok * 25/100;
+        $sparepart->map(function ($item) {
+            $value = $item->hargaPokok * 25 / 100;
             $item['hargaJual'] = $item->hargaPokok + $value;
             return $item;
         });
         $rak = Rak::latest()->get();
         // $date = Carbon::now()->format('Ym');
         // $noTransaksi = 'RC'.random_int(100000, 999999).$date;
-        return view('admin.pembelianDetail.create',compact('pembelian','sparepart','rak'));
+        return view('admin.pembelianDetail.create', compact('pembelian', 'sparepart', 'rak'));
     }
 
     /**
@@ -57,17 +57,18 @@ class PembelianDetailController extends Controller
         $input['jumlahRfs'] = $request->jumlahSj;
         $pembelianDetail = PembelianDetail::create($input);
         $stok = Stok::whereSparepartId($pembelianDetail->sparepart_id)->first();
-        if(!$stok){
+        if (!$stok) {
             $input['stok'] = $pembelianDetail->jumlahSj;
             $stok = Stok::create($input);
-        }else{
+        } else {
             $stok->stok = $stok->stok + $pembelianDetail->jumlahSj;
             $stok->hargaJual = $request->hargaJual;
             $stok->update();
         }
 
 
-        return redirect()->route('admin.pembelian.show',$pembelianDetail->pembelian_id)->withSuccess('Data berhasil disimpan');
+        // return redirect()->route('admin.pembelian.show', $pembelianDetail->pembelian_id)->withSuccess('Data berhasil disimpan');
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -78,7 +79,7 @@ class PembelianDetailController extends Controller
      */
     public function show(PembelianDetail $pembelianDetail)
     {
-        return view('admin.pembelianDetail.index',compact('pembelianDetail'));
+        return view('admin.pembelianDetail.index', compact('pembelianDetail'));
     }
 
     /**
@@ -91,7 +92,7 @@ class PembelianDetailController extends Controller
     {
         $sparepart = Sparepart::latest()->get();
         $rak = Rak::latest()->get();
-        return view('admin.pembelianDetail.edit',compact('pembelianDetail','sparepart','rak'));
+        return view('admin.pembelianDetail.edit', compact('pembelianDetail', 'sparepart', 'rak'));
     }
 
     /**
@@ -107,18 +108,18 @@ class PembelianDetailController extends Controller
 
         $jumlahOld = $pembelianDetail->jumlahSj;
         $jumlahNew = $request->jumlahSj;
-        if ($jumlahNew < $jumlahOld){
+        if ($jumlahNew < $jumlahOld) {
             $diff = $jumlahOld - $jumlahNew;
             $stok->stok = $stok->stok - $diff;
-        }else if($jumlahNew > $jumlahOld){
+        } else if ($jumlahNew > $jumlahOld) {
             $diff = $jumlahNew - $jumlahOld;
             $stok->stok = $stok->stok + $diff;
         }
-            $stok->hargaJual = $request->hargaJual;
-            $stok->update();
+        $stok->hargaJual = $request->hargaJual;
+        $stok->update();
 
         $pembelianDetail->update($request->all());
-        return redirect()->route('admin.pembelian.show',$pembelianDetail->pembelian_id)->withSuccess('Data berhasil diubah');
+        return redirect()->route('admin.pembelian.show', $pembelianDetail->pembelian_id)->withSuccess('Data berhasil diubah');
         // return redirect()->route('admin.pembelianDetail.index')->withSuccess('Data berhasil diubah');
     }
 
