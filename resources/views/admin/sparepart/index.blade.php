@@ -69,14 +69,14 @@
                                     @foreach ($data as $d)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $d->partNumber }}</td>
-                                            <td>{{ $d->deskripsi }}</td>
+                                            <td class="text-start">{{ $d->partNumber }}</td>
+                                            <td class="text-start">{{ $d->deskripsi }}</td>
                                             <td>{{ $d->partReference }}</td>
                                             {{-- <td>{{$d->kodeSupplier}}</td> --}}
                                             {{-- <td>{{$d->kodeGroupSales}}</td> --}}
                                             <td>{{ $d->partStatus }}</td>
-                                            <td>{{ $d->HET }}</td>
-                                            <td>{{ $d->hargaPokok }}</td>
+                                            <td class="text-end">@currency($d->HET)</td>
+                                            <td class="text-end">@currency($d->hargaPokok)</td>
                                             {{-- <td>{{$d->moqDk}}</td>
                                     <td>{{$d->moqDm}}</td>
                                     <td>{{$d->moqDb}}</td> --}}

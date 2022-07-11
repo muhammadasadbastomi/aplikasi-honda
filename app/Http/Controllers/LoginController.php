@@ -47,14 +47,15 @@ class LoginController extends Controller
 
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            switch (Auth::user()->role) {
-                case 1:
-                    return redirect()->route('admin.index')->withSuccess('Berhasil login');
-                    break;
-                case 0:
-                    return redirect()->route('user.index')->withSuccess('Berhasil login');
-                    break;
-            }
+            return redirect()->route('admin.index')->withSuccess('Berhasil login');
+            // switch (Auth::user()->role) {
+            // case 1:
+            //     return redirect()->route('admin.index')->withSuccess('Berhasil login');
+            //     break;
+            // case 0:
+            //     return redirect()->route('user.index')->withSuccess('Berhasil login');
+            //     break;
+            // }
 
             // return redirect()->route('admin.index')->withSuccess('Berhasil login');
 
@@ -64,7 +65,6 @@ class LoginController extends Controller
 
             return redirect()->route('login')->withErrors('Username atau password salah');
         }
-
     }
 
     public function logout(Request $req)
