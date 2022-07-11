@@ -17,9 +17,9 @@ class PromoController extends Controller
     public function index()
     {
         $data = Promo::latest()->get();
-        
 
-        return view('admin.promo.index',compact('data'));
+
+        return view('admin.promo.index', compact('data'));
     }
 
     /**
@@ -30,7 +30,13 @@ class PromoController extends Controller
     public function create()
     {
         $sparepart = Sparepart::latest()->get();
-        return view('admin.promo.create',compact('sparepart'));
+        $sparepart->map(function ($item) {
+
+            $item['jumlahStok'] = $item->stok->stok;
+
+            return $item;
+        });
+        return view('admin.promo.create', compact('sparepart'));
     }
 
     /**
@@ -66,7 +72,13 @@ class PromoController extends Controller
     public function edit(Promo $promo)
     {
         $sparepart = Sparepart::latest()->get();
-        return view('admin.promo.edit',compact('promo','sparepart'));
+        $sparepart->map(function ($item) {
+
+            $item['jumlahStok'] = $item->stok->stok;
+
+            return $item;
+        });
+        return view('admin.promo.edit', compact('promo', 'sparepart'));
     }
 
     /**
