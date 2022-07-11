@@ -109,34 +109,67 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">LAPORAN DATA RETUR</h2>
+            <h2 style="text-align:center;">LAPORAN OMSET PENJUALAN BULAN {{ $month }} TAHUN {{ $year }}
+            </h2>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
                 style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
-                <thead>
+                <thead style="font-size:12px !important;">
+                    <tr>
+                        <th rowspan="2">No</th>
+                        <th>Tanggal Penjualan</th>
+                        <th>No Transaksi</th>
+                        <th colspan="2">Nama Customer</th>
+                        <th rowspan="3">Harga</th>
+                        <th rowspan="3">Diskon</th>
+                        <th rowspan="3">Total Harga</th>
+                    </tr>
                     <tr>
                         <th>No</th>
-                        <th>No Transaksi </th>
-                        <th>Tanggal Transaksi</th>
-                        <th>Jenis Retur</th>
-                        <th>Nama Sparepart</th>
-                        <th>Jumlah Retur</th>
+                        <th>Part Number</th>
+                        <th>Part Deskripsi</th>
+                        <th>Qty SJ (PCS)</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $d)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td rowspan="{{ $d->span }}">{{ $loop->iteration }}</td>
+                            <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td>
                             <td>{{ $d->noTransaksi }}</td>
-                            <td>{{ carbon\carbon::parse($d->tanggalTransaksi)->translatedFormat('d F Y') }}
-                            </td>
-                            <td>{{ $d->jenisRetur }}</td>
+                            <td colspan="2">{{ $d->namaCustomer }}</td>
+                            @foreach ($d->penjualan_detail as $d)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $d->sparepart->partNumber }}</td>
                             <td>{{ $d->sparepart->deskripsi }}</td>
-                            <td>{{ $d->jumlahRetur }}</td>
+                            <td>{{ $d->jumlah }}</td>
+                            <td>@currency($d->hargaJual)</td>
+                            {{-- @php
+                                $diskon = $d->diskon;
+                                $harga = $d->hargaJual * $d->jumlah;
+                                if ($diskon) {
+                                    $diskonHarga = ($harga * $diskon) / 100;
+                                    $harga = $harga - $diskonHarga;
+                                } else {
+                                    $diskon = 0;
+                                }
+                            @endphp --}}
+                            <td>
+                                {{-- {{ $diskon }}% --}}
+                                {{ $d->diskon }}%
+                            </td>
+                            {{-- <td>@currency($harga)</td> --}}
+                            <td>@currency($d->harga)</td>
+
+
                         </tr>
+                    @endforeach
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
+            <h5 style="text-align: right">TOTAL OMSET PENJUALAN : @currency($data->sum('harga'))</h5>
             <br>
             <br>
             <div class="ttd">
@@ -145,7 +178,7 @@
                 <h5 style="margin:0px">Manager</h5>
                 <br>
                 <br>
-                <h5 style="text-decoration:underline; margin:0px">{{ $ttdName }}</h5> --}}
+                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5> --}}
                 {{-- <h5 style="margin:0px">NIP. 19710830 199101 1 002</h5> --}}
             </div>
         </div>

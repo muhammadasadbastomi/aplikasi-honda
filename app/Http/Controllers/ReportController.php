@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use App\Models\Rak;
 use App\Models\Stok;
 use App\Models\User;
+use App\Models\Promo;
+use App\Models\Retur;
 use App\Models\Pembelian;
 use App\Models\Penjualan;
 use App\Models\Sparepart;
@@ -159,9 +161,28 @@ class ReportController extends Controller
         return $pdf->stream('Laporan Kegiatan Tahunan.pdf');
     }
 
-    public function kegiatanMonth(Request $request)
+    public function PenjualanMonth(Request $request)
     {
-        $data = Kegiatan::whereYear('tanggal_kegiatan', '=', $request->year)->whereMonth('tanggal_kegiatan', '=', $request->month)->get();
+        $data = Penjualan::whereYear('tanggalPenjualan', '=', $request->year)->whereMonth('tanggalPenjualan', '=', $request->month)->get();
+        $data->map(function ($item) {
+            $item['span'] = $item->penjualan_detail->count() + 1;
+            $item->penjualan_detail->map(function ($i) {
+                $diskon = $i->diskon;
+                $harga = $i->hargaJual * $i->jumlah;
+                if ($diskon) {
+                    $diskonHarga = ($harga * $diskon) / 100;
+                    $harga = $harga - $diskonHarga;
+                } else {
+                    $diskon = 0;
+                }
+                $i['diskon'] = $diskon;
+                $i['harga'] = $harga;
+                return $i;
+            });
+            // dd($item->penjualan_detail);
+            $item['harga'] = $item->penjualan_detail->sum('harga');
+            return $item;
+        });
         $now = $this->now;
         $year = $request->year;
         switch ($request->month) {
@@ -207,7 +228,8 @@ class ReportController extends Controller
                 break;
         }
         $month = strToUpper($month);
-        $pdf = PDF::loadView('admin.report.kegiatanMonth', ['data' => $data, 'now' => $now, 'year' => $year, 'month' => $month]);
+        // dd($data);
+        $pdf = PDF::loadView('admin.penjualan.report.penjualanMonth', ['data' => $data, 'now' => $now, 'year' => $year, 'month' => $month]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Kegiatan Bulanan.pdf');
@@ -217,14 +239,24 @@ class ReportController extends Controller
     {
         return view('admin.report.konflikIndex');
     }
-    public function konflikAll()
+    public function returAll()
     {
-        $data = Konflik::latest()->get();
+        $data = Retur::latest()->get();
         $now = $this->now;
-        $pdf = PDF::loadView('admin.report.konflikAll', ['data' => $data, 'now' => $now]);
+        $pdf = PDF::loadView('admin.retur.report.all', ['data' => $data, 'now' => $now]);
         $pdf->setPaper('a4', 'landscape');
 
-        return $pdf->stream('Laporan Semua Konflik.pdf');
+        return $pdf->stream('Laporan Semua Retur Barang.pdf');
+    }
+
+    public function promoAll()
+    {
+        $data = Promo::latest()->get();
+        $now = $this->now;
+        $pdf = PDF::loadView('admin.promo.report.all', ['data' => $data, 'now' => $now]);
+        $pdf->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Laporan Semua Retur Barang.pdf');
     }
 
     public function konflikYear(Request $request)

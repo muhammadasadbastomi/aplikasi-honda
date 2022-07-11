@@ -116,48 +116,24 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Part Number</th>
-                        <th>Deskripsi Part</th>
-                        <th>Part Reference</th>
-                        {{-- <th>Kode Supplier</th>
-                        <th>Kode Group Sales</th> --}}
-                        <th>Part Status</th>
-                        <th>HET</th>
-                        <th>Harga Pokok</th>
-                        {{-- <th>MOQ DK</th>
-                        <th>MOQ DM</th>
-                        <th>MOQ DB</th> --}}
-                        {{-- <th>Part Number Type</th>
-                        <th>Part Moving</th>
-                        <th>Part Source</th>
-                        <th>Part Current</th>
-                        <th>Part Type</th>
-                        <th>Part Lifetime</th>
-                        <th>Part Group</th> --}}
+                        <th>Nama Promo</th>
+                        <th>Nama Sparepart</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Selesai</th>
+                        <th>Jumlah Diskon</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $d)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td class="text-start">{{ $d->partNumber }}</td>
-                            <td class="text-start">{{ $d->deskripsi }}</td>
-                            <td>{{ $d->partReference }}</td>
-                            {{-- <td>{{$d->kodeSupplier}}</td>
-                         <td>{{$d->kodeGroupSales}}</td> --}}
-                            <td>{{ $d->partStatus }}</td>
-                            <td class="text-end">@currency($d->HET)</td>
-                            <td class="text-end">@currency($d->hargaPokok)</td>
-                            {{-- <td>{{$d->moqDk}}</td>
-                         <td>{{$d->moqDm}}</td>
-                         <td>{{$d->moqDb}}</td> --}}
-                            {{-- <td>{{ $d->partNumberType }}</td>
-                            <td>{{ $d->partMoving }}</td>
-                            <td>{{ $d->partSource }}</td>
-                            <td>{{ $d->partCurrent }}</td>
-                            <td>{{ $d->partType }}</td>
-                            <td>{{ $d->partLifetime }}</td>
-                            <td>{{ $d->partGroup }}</td> --}}
+                            <td>{{ $d->judul }}</td>
+                            <td>{{ $d->sparepart->deskripsi }}</td>
+                            <td>{{ carbon\carbon::parse($d->tanggalMulai)->translatedFormat('d F Y') }}
+                            </td>
+                            <td>{{ carbon\carbon::parse($d->tanggalSelesai)->translatedFormat('d F Y') }}
+                            </td>
+                            <td>{{ $d->diskon }}%</td>
                         </tr>
                     @endforeach
                 </tbody>
