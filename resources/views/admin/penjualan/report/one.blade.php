@@ -179,7 +179,7 @@
                         </tr>
                     @endforeach
                     <td colspan="8">Total Harga</td>
-                    <td>@currency($d->harga)</td>
+                    <td>@currency($data->sum('harga'))</td>
                     </tr>
                     @endforeach
                 </tbody>

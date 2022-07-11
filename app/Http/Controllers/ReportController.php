@@ -132,6 +132,7 @@ class ReportController extends Controller
                 $i['harga'] = $harga;
                 return $i;
             });
+            // dd($item->penjualan_detail);
             $item['harga'] = $item->penjualan_detail->sum('harga');
             return $item;
         });
