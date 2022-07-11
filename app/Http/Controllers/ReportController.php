@@ -41,7 +41,7 @@ class ReportController extends Controller
         $data = Sparepart::latest()->get();
         $now = $this->now;
         $ttdName = $this->ttdName;
-        $pdf = PDF::loadView('admin.sparepart.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf = PDF::loadView('admin.sparepart.report.all', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Semua Sparepart.pdf');
@@ -52,7 +52,7 @@ class ReportController extends Controller
         $data = Rak::latest()->get();
         $now = $this->now;
         $ttdName = $this->ttdName;
-        $pdf = PDF::loadView('admin.rak.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf = PDF::loadView('admin.rak.report.all', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Semua Rak.pdf');
@@ -63,7 +63,7 @@ class ReportController extends Controller
         $data = Stok::latest()->get();
         $now = $this->now;
         $ttdName = $this->ttdName;
-        $pdf = PDF::loadView('admin.stok.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf = PDF::loadView('admin.stok.report.all', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Semua Stok.pdf');
@@ -75,7 +75,7 @@ class ReportController extends Controller
         $now = $this->now;
         $ttdName = $this->ttdName;
 
-        $pdf = PDF::loadView('admin.stok.report.low', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf = PDF::loadView('admin.stok.report.low', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Stok Menipis.pdf');
@@ -85,13 +85,13 @@ class ReportController extends Controller
     {
         $data = Pembelian::latest()->get();
 
-        $data->map(function($item){
+        $data->map(function ($item) {
             $item['span'] = $item->pembelian_detail->count() + 1;
             return $item;
         });
         $now = $this->now;
         $ttdName = $this->ttdName;
-        $pdf = PDF::loadView('admin.pembelian.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf = PDF::loadView('admin.pembelian.report.all', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Semua Pembelian.pdf');
@@ -101,13 +101,13 @@ class ReportController extends Controller
     {
         $data = Penjualan::latest()->get();
 
-        $data->map(function($item){
+        $data->map(function ($item) {
             $item['span'] = $item->penjualan_detail->count() + 1;
             return $item;
         });
         $now = $this->now;
         $ttdName = $this->ttdName;
-        $pdf = PDF::loadView('admin.penjualan.report.all', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf = PDF::loadView('admin.penjualan.report.all', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Semua Penjualan.pdf');
@@ -117,13 +117,29 @@ class ReportController extends Controller
     {
         $data = Penjualan::whereId($id)->get();
 
-        $data->map(function($item){
+        $data->map(function ($item) {
             $item['span'] = $item->penjualan_detail->count() + 1;
+            $item->penjualan_detail->map(function ($i) {
+                $diskon = $i->diskon;
+                $harga = $i->hargaJual * $i->jumlah;
+                if ($diskon) {
+                    $diskonHarga = ($harga * $diskon) / 100;
+                    $harga = $harga - $diskonHarga;
+                } else {
+                    $diskon = 0;
+                }
+                $i['diskon'] = $diskon;
+                $i['harga'] = $harga;
+                return $i;
+            });
+            $item['harga'] = $item->penjualan_detail->sum('harga');
             return $item;
         });
+        // dd($data);
+        // dd($data->first()->penjualan_detail);
         $now = $this->now;
         $ttdName = $this->ttdName;
-        $pdf = PDF::loadView('admin.penjualan.report.one', ['data' => $data, 'now' => $now , 'ttdName' => $ttdName]);
+        $pdf = PDF::loadView('admin.penjualan.report.one', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Transaksi Penjualan.pdf');
@@ -456,7 +472,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Data Petugas.pdf');
-
     }
 
     public function camat()
@@ -468,7 +483,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Data Camat.pdf');
-
     }
 
     public function kasi()
@@ -480,7 +494,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Data Kasi.pdf');
-
     }
 
     public function jadwal()
@@ -496,7 +509,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Data Jadwal Petugas.pdf');
-
     }
 
     public function suratIndex()
@@ -512,7 +524,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'potrait');
 
         return $pdf->stream('Laporan Surat Petugas.pdf');
-
     }
 
     public function pegawai()
@@ -524,7 +535,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Data Pegawai.pdf');
-
     }
 
     public function baKegiatan($id)
@@ -535,7 +545,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'potrait');
 
         return $pdf->stream('Berita acara kegiatan.pdf');
-
     }
     public function baGangguan($id)
     {
@@ -545,7 +554,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'potrait');
 
         return $pdf->stream('Berita acara gangguan.pdf');
-
     }
     public function baKriminal($id)
     {
@@ -555,7 +563,6 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'potrait');
 
         return $pdf->stream('Berita acara kriminal.pdf');
-
     }
     public function baKonflik($id)
     {
@@ -565,6 +572,5 @@ class ReportController extends Controller
         $pdf->setPaper('a4', 'potrait');
 
         return $pdf->stream('Berita acara konflik.pdf');
-
     }
 }

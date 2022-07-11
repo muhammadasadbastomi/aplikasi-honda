@@ -110,18 +110,30 @@
         <hr style="margin-top:1px;">
         <div class="isi">
             <h2 style="text-align:center;">NOTA PENJUALAN</h2>
+            <h5 style="text-align:left;">NAMA CUSTOMER &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;:
+                {{ strtoupper($data->first()->namaCustomer) }}
+            </h5>
+            <h5 style="text-align:left;">NO TRANSAKSI &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:
+                {{ strtoupper($data->first()->noTransaksi) }}</h5>
+            {{-- carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') --}}
+            <h5 style="text-align:left;">TANGGAL PENJUALAN &nbsp; :
+                {{ strtoupper(carbon\carbon::parse($data->first()->tanggalPenjualan)->translatedFormat('d F Y')) }}
+            </h5>
+
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
                 style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
                 <thead style="font-size:12px !important;">
                     <tr>
                         <th rowspan="2">No</th>
-                        <th>Tanggal Penjualan</th>
-                        <th>No Transaksi</th>
-                        <th colspan="2">Nama Customer</th>
+                        <th></th>
+                        <th></th>
+                        {{-- <th>No Transaksi</th> --}}
+                        <th colspan="2"></th>
                         <th rowspan="3">Harga</th>
                         <th rowspan="3">Diskon</th>
                         <th rowspan="3">Total Harga</th>
+                        <th rowspan="{{ $data->sum('span') + 2 }}">Total Keseluruhan</th>
                     </tr>
                     <tr>
                         <th>No</th>
@@ -134,9 +146,11 @@
                     @foreach ($data as $d)
                         <tr>
                             <td rowspan="{{ $d->span }}">{{ $loop->iteration }}</td>
-                            <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td>
-                            <td>{{ $d->noTransaksi }}</td>
-                            <td colspan="2">{{ $d->namaCustomer }}</td>
+                            {{-- <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td> --}}
+                            <td></td>
+                            <td></td>
+                            {{-- <td colspan="2">{{ $d->namaCustomer }}</td> --}}
+                            <td colspan="2"></td>
                             @foreach ($d->penjualan_detail as $d)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -144,7 +158,7 @@
                             <td>{{ $d->sparepart->deskripsi }}</td>
                             <td>{{ $d->jumlah }}</td>
                             <td>@currency($d->hargaJual)</td>
-                            @php
+                            {{-- @php
                                 $diskon = $d->diskon;
                                 $harga = $d->hargaJual * $d->jumlah;
                                 if ($diskon) {
@@ -153,14 +167,19 @@
                                 } else {
                                     $diskon = 0;
                                 }
-                            @endphp
+                            @endphp --}}
                             <td>
-                                {{ $diskon }}%
+                                {{-- {{ $diskon }}% --}}
+                                {{ $d->diskon }}%
                             </td>
-                            <td>@currency($harga)</td>
+                            {{-- <td>@currency($harga)</td> --}}
+                            <td>@currency($d->harga)</td>
+
 
                         </tr>
                     @endforeach
+                    <td colspan="8">Total Harga</td>
+                    <td>@currency($d->harga)</td>
                     </tr>
                     @endforeach
                 </tbody>
