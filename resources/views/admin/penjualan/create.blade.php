@@ -131,8 +131,8 @@
                                             <td>@currency($d->hargaTotal)</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="{{ route('admin.penjualanDetail.edit', $d->id) }}"
-                                                        class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                                    {{-- <a href="{{ route('admin.penjualanDetail.edit', $d->id) }}"
+                                                        class="btn btn-primary"><i class="bi bi-pencil-square"></i></a> --}}
                                                     <button type="button" class="btn btn-danger destroy"
                                                         data-bs-toggle="modal"
                                                         data-route="{{ route('admin.penjualanDetail.destroy', $d->id) }}"
