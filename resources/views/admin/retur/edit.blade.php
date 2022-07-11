@@ -23,6 +23,14 @@
                 @method('put')
                 <div class="row">
                     <div class="mb-3 col">
+                        <label for="formFile" class="form-label">No Transaksi</label>
+                        <input class="form-control form-control-sm mb-3" type="text" name="noTransaksi"
+                            placeholder="No Transaksi" value="{{ $retur->noTransaksi }}"
+                            aria-label="default input example" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
                         <label for="formFile" class="form-label">Tanggal Transaksi</label>
                         <input class="form-control form-control-sm mb-3" type="date"
                             value="{{ $retur->tanggalTransaksi }}" name="tanggalTransaksi" placeholder="Tanggal Transaksi"
@@ -63,6 +71,13 @@
                         <label for="formFile" class="form-label">Jumlah Retur</label>
                         <input class="form-control form-control-sm mb-3" type="text" value="{{ $retur->jumlahRetur }}"
                             name="jumlahRetur" placeholder="Jumlah Retur" aria-label="default input example" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="formFile" class="form-label">Foto Barang Retur (Upload jika ingin mengubah)</label>
+                        <input class="form-control form-control-sm mb-3" type="file" name="file"
+                            placeholder="Jumlah Retur" aria-label="default input example">
                     </div>
                 </div>
             </div>

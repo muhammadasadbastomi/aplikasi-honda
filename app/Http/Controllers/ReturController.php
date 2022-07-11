@@ -17,9 +17,9 @@ class ReturController extends Controller
     public function index()
     {
         $data = Retur::latest()->get();
-        
 
-        return view('admin.retur.index',compact('data'));
+
+        return view('admin.retur.index', compact('data'));
     }
 
     /**
@@ -30,7 +30,7 @@ class ReturController extends Controller
     public function create()
     {
         $sparepart = Sparepart::latest()->get();
-        return view('admin.retur.create',compact('sparepart'));
+        return view('admin.retur.create', compact('sparepart'));
     }
 
     /**
@@ -39,9 +39,18 @@ class ReturController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        Retur::create($request->all());
+        // Retur::create($request->all());
+        $input = $req->all();
+        if ($req->file) {
+            $name = $req->file('file')->getClientOriginalName();
+
+            $req->file('file')->storeAs('public/retur', $name);
+            $input['file'] = $name;
+        }
+        // dd($input);
+        $data = Retur::create($input);
 
         return redirect()->route('admin.retur.index')->withSuccess('Data berhasil disimpan');
     }
@@ -66,7 +75,7 @@ class ReturController extends Controller
     public function edit(Retur $retur)
     {
         $sparepart = Sparepart::latest()->get();
-        return view('admin.retur.edit',compact('retur','sparepart'));
+        return view('admin.retur.edit', compact('retur', 'sparepart'));
     }
 
     /**
@@ -76,9 +85,18 @@ class ReturController extends Controller
      * @param  \App\Models\Retur  $retur
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Retur $retur)
+    public function update(Request $req, Retur $retur)
     {
-        $retur->update($request->all());
+        // $retur->update($request->all());
+        $input =  $req->all();
+        if ($req->file) {
+            $name = $req->file('file')->getClientOriginalName();
+
+            $req->file('file')->storeAs('public/retur', $name);
+            $input['file'] = $name;
+        }
+
+        $retur->update($input);
         return redirect()->route('admin.retur.index')->withSuccess('Data berhasil diubah');
     }
 

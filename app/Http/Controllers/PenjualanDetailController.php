@@ -34,11 +34,11 @@ class PenjualanDetailController extends Controller
     public function create($id)
     {
         $penjualan =  Penjualan::findOrFail($id);
-        $sparepart = Sparepart::with('stok')->whereRelation('stok','stok', '>', 0)->get();
+        $sparepart = Sparepart::with('stok')->whereRelation('stok', 'stok', '>', 0)->get();
 
-        
+
         // dd($now);
-        $sparepart->map(function($item){
+        $sparepart->map(function ($item) {
             $now = Carbon::today()->format('Y-m-d');
             $item['jumlahStok'] = $item->stok->stok;
             $item['hargaJual'] = $item->stok->hargaJual;
@@ -46,13 +46,13 @@ class PenjualanDetailController extends Controller
             // $tanggalSelesai = Carbon::parse($item->tanggalSelesai)->format('Y-m-d');
             // dd($now,$tanggalMulai);
             // $tanggalSelesai = Carbon::parse($item->tanggalSelesai);
-            $promo = Promo::whereSparepartId($item->id)->where('tanggalMulai','<=',$now)->where('tanggalSelesai','>=',$now)->first();
+            $promo = Promo::whereSparepartId($item->id)->where('tanggalMulai', '<=', $now)->where('tanggalSelesai', '>=', $now)->first();
             // dd($promo->tanggalMulai);
             // $promo = Promo::whereSparepartId($item->id)->where(['tanggalMulai' >= $now])->first();
-            if($promo){
+            if ($promo) {
                 // if($now->between($promo->tanggalMulai, $promo->tanggalSelesai))
                 // {
-                    $item['diskon'] = $promo->diskon;
+                $item['diskon'] = $promo->diskon;
 
                 // }
             }
@@ -61,7 +61,7 @@ class PenjualanDetailController extends Controller
         // dd($sparepart);
         // $ = Carbon::now(/ $ = Carbon::now()->format('Ym');
         // $noTransaksi = 'RC'.random_int(100000, 999999).$date;
-        return view('admin.penjualanDetail.create',compact('penjualan','sparepart'));
+        return view('admin.penjualanDetail.create', compact('penjualan', 'sparepart'));
     }
 
     /**
@@ -74,18 +74,18 @@ class PenjualanDetailController extends Controller
     {
         $input = $request->all();;
         $stok = Stok::whereSparepartId($request->sparepart_id)->first();
-        if($stok->stok < $request->jumlah)
-        {
+        if ($stok->stok < $request->jumlah) {
             return back()->withWarning('Stok tidak mencukupi');
-        }else{
+        } else {
 
             $penjualanDetail = PenjualanDetail::create($input);
-                $stok->stok = $stok->stok - $penjualanDetail->jumlah;
-                $stok->update();
+            $stok->stok = $stok->stok - $penjualanDetail->jumlah;
+            $stok->update();
         }
 
 
-        return redirect()->route('admin.penjualan.show',$penjualanDetail->penjualan_id)->withSuccess('Data berhasil disimpan');
+        // return redirect()->route('admin.penjualan.show',$penjualanDetail->penjualan_id)->withSuccess('Data berhasil disimpan');
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -96,7 +96,7 @@ class PenjualanDetailController extends Controller
      */
     public function show(PenjualanDetail $penjualanDetail)
     {
-        return view('admin.penjualanDetail.index',compact('penjualanDetail'));
+        return view('admin.penjualanDetail.index', compact('penjualanDetail'));
     }
 
     /**
@@ -107,25 +107,25 @@ class PenjualanDetailController extends Controller
      */
     public function edit(PenjualanDetail $penjualanDetail)
     {
-        $sparepart = Sparepart::with('stok')->whereRelation('stok','stok', '>', 0)->get();
+        $sparepart = Sparepart::with('stok')->whereRelation('stok', 'stok', '>', 0)->get();
 
-        $sparepart->map(function($item){
+        $sparepart->map(function ($item) {
             $now = Carbon::today()->format('Y-m-d');
             $item['jumlahStok'] = $item->stok->stok;
             $item['hargaJual'] = $item->stok->hargaJual;
 
-            $promo = Promo::whereSparepartId($item->id)->where('tanggalMulai','<=',$now)->where('tanggalSelesai','>=',$now)->first();
+            $promo = Promo::whereSparepartId($item->id)->where('tanggalMulai', '<=', $now)->where('tanggalSelesai', '>=', $now)->first();
 
-            if($promo){
+            if ($promo) {
                 // if($now->between($promo->tanggalMulai, $promo->tanggalSelesai))
                 // {
-                    $item['diskon'] = $promo->diskon;
+                $item['diskon'] = $promo->diskon;
 
                 // }
             }
             return $item;
         });
-        return view('admin.penjualanDetail.edit',compact('penjualanDetail','sparepart'));
+        return view('admin.penjualanDetail.edit', compact('penjualanDetail', 'sparepart'));
     }
 
     /**
@@ -150,19 +150,19 @@ class PenjualanDetailController extends Controller
         // }
         $jumlahOld = $penjualanDetail->jumlahSj;
         $jumlahNew = $request->jumlahSj;
-        if ($jumlahNew < $jumlahOld){
+        if ($jumlahNew < $jumlahOld) {
             $diff = $jumlahOld - $jumlahNew;
             $stok->stok = $stok->stok - $diff;
-        }else if($jumlahNew > $jumlahOld){
+        } else if ($jumlahNew > $jumlahOld) {
             $diff = $jumlahNew - $jumlahOld;
             $stok->stok = $stok->stok + $diff;
         }
-            $stok->hargaJual = $request->hargaJual;
-            $stok->update();
+        $stok->hargaJual = $request->hargaJual;
+        $stok->update();
 
         $penjualanDetail->update($request->all());
         // dd($penjualanDetail);
-        return redirect()->route('admin.penjualan.show',$penjualanDetail->penjualan_id)->withSuccess('Data berhasil diubah');
+        return redirect()->route('admin.penjualan.show', $penjualanDetail->penjualan_id)->withSuccess('Data berhasil diubah');
         // return redirect()->route('admin.penjualanDetail.index')->withSuccess('Data berhasil diubah');
     }
 

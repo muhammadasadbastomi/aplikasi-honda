@@ -43,11 +43,12 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        {{-- <th>Nama </th> --}}
+                                        <th>No Transaksi </th>
                                         <th>Tanggal Transaksi</th>
                                         <th>Jenis Retur</th>
                                         <th>Nama Sparepart</th>
                                         <th>Jumlah Retur</th>
+                                        <th>Foto Retur Barang</th>
 
                                         <th>Aksi</th>
                                     </tr>
@@ -56,12 +57,14 @@
                                     @foreach ($data as $d)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            {{-- <td>{{ $d->nama }}</td> --}}
+                                            <td>{{ $d->noTransaksi }}</td>
                                             <td>{{ carbon\carbon::parse($d->tanggalTransaksi)->translatedFormat('d F Y') }}
                                             </td>
                                             <td>{{ $d->jenisRetur }}</td>
                                             <td>{{ $d->sparepart->deskripsi }}</td>
                                             <td>{{ $d->jumlahRetur }}</td>
+                                            <td><a href="{{ asset('storage/retur/' . $d->file) }}" target="_blank"
+                                                    rel="noopener noreferrer">Lihat Foto</a></td>
 
                                             <td>
                                                 <div class="btn-group">

@@ -15,7 +15,7 @@ class CreatePenjualanDetailsTable extends Migration
     {
         Schema::create('penjualan_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('penjualan_id');
+            $table->unsignedBigInteger('penjualan_id')->nullable();
             $table->foreign('penjualan_id')->references('id')->on('penjualans')->onDelete('cascade');
             $table->unsignedBigInteger('sparepart_id');
             $table->foreign('sparepart_id')->references('id')->on('spareparts')->onDelete('restrict');

@@ -22,6 +22,13 @@
                 @csrf
                 <div class="row">
                     <div class="mb-3 col">
+                        <label for="formFile" class="form-label">No Transaksi</label>
+                        <input class="form-control form-control-sm mb-3" type="text" name="noTransaksi"
+                            placeholder="No Transaksi" aria-label="default input example" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
                         <label for="formFile" class="form-label">Tanggal Transaksi</label>
                         <input class="form-control form-control-sm mb-3" type="date" name="tanggalTransaksi"
                             placeholder="Tanggal Transaksi" aria-label="default input example" required>
@@ -56,6 +63,13 @@
                     <div class="mb-3 col">
                         <label for="formFile" class="form-label">Jumlah Retur</label>
                         <input class="form-control form-control-sm mb-3" type="text" name="jumlahRetur"
+                            placeholder="Jumlah Retur" aria-label="default input example" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="formFile" class="form-label">Foto Barang Retur</label>
+                        <input class="form-control form-control-sm mb-3" type="file" name="file"
                             placeholder="Jumlah Retur" aria-label="default input example" required>
                     </div>
                 </div>

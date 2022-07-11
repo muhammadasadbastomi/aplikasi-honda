@@ -15,12 +15,13 @@ class CreateRetursTable extends Migration
     {
         Schema::create('returs', function (Blueprint $table) {
             $table->id();
-            // $table->string('nama');
+            $table->string('noTransaksi');
             $table->date('tanggalTransaksi');
             $table->string('jenisRetur');
             $table->unsignedBigInteger('sparepart_id');
             $table->foreign('sparepart_id')->references('id')->on('spareparts')->onDelete('restrict');
             $table->string('jumlahRetur');
+            $table->string('file');
             $table->timestamps();
         });
     }
