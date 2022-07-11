@@ -133,7 +133,7 @@
                         <th rowspan="3">Harga</th>
                         <th rowspan="3">Diskon</th>
                         <th rowspan="3">Total Harga</th>
-                        <th rowspan="{{ $data->sum('span') + 2 }}">Total Keseluruhan</th>
+                        {{-- <th rowspan="{{ $data->sum('span') + 2 }}">Total Keseluruhan</th> --}}
                     </tr>
                     <tr>
                         <th>No</th>
@@ -178,12 +178,13 @@
 
                         </tr>
                     @endforeach
-                    <td colspan="8">Total Harga</td>
-                    <td>@currency($data->sum('harga'))</td>
+                    {{-- <td colspan="8">Total Harga</td>
+                    <td>@currency($data->sum('harga'))</td> --}}
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            <h5 style="text-align:right;">TOTAL HARGA : @currency($data->sum('harga'))</h5>
             <br>
             <br>
             <div class="ttd">
