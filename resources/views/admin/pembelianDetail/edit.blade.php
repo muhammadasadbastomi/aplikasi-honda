@@ -26,10 +26,11 @@
                     <div class="mb-3 col">
                         <label for="formFile" class="form-label">Sparepart</label>
                         <select name="sparepart_id" id="" class="form-select form-select-sm mb-3 select2" required>
+                            <option value="">Pilih Sparepart</option>
                             @foreach ($sparepart as $d)
-                                <option value="">Pilih Sparepart</option>
                                 <option value="{{ $d->id }}"
-                                    {{ $pembelianDetail->sparepart_id == $d->id ? 'selected' : '' }}>{{ $d->partNumber }} -
+                                    {{ $pembelianDetail->sparepart_id == $d->id ? 'selected' : '' }}>
+                                    {{ $d->partNumber }} -
                                     {{ $d->deskripsi }}</option>
                             @endforeach
                         </select>

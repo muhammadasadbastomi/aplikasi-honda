@@ -26,8 +26,8 @@
                         <label for="formFile" class="form-label">Sparepart</label>
                         <select name="sparepart_id" id="sparepart_id" class="form-select form-select-sm mb-3 select2"
                             required>
+                            <option value="">Pilih Sparepart</option>
                             @foreach ($sparepart as $d)
-                                <option value="">Pilih Sparepart</option>
                                 <option value="{{ $d->id }}" data-harga="{{ $d->hargaJual }}"
                                     {{ $d->id == $promo->sparepart_id ? 'selected' : '' }}>
                                     {{ $d->partNumber }} - {{ $d->deskripsi }} | Stok : {{ $d->jumlahStok }}
