@@ -614,10 +614,6 @@
                         <div class="menu-title" style="color: white;">Master Data</div>
                     </a>
                     <ul>
-                        <li class="{{ Request::is('admin/user/*') ? 'mm-active' : '' }}"> <a
-                                href="{{ route('admin.user.index') }}"><i style="color: white;"
-                                    class="bi bi-arrow-right-short"></i>User</a>
-                        </li>
                         <li class="{{ Request::is('admin/sparepart/*') ? 'mm-active' : '' }}"> <a
                                 href="{{ route('admin.sparepart.index') }}"><i style="color: white;"
                                     class="bi bi-arrow-right-short"></i>Sparepart</a>
@@ -625,6 +621,10 @@
                         <li class="{{ Request::is('admin/rak/*') ? 'mm-active' : '' }}"> <a
                                 href="{{ route('admin.rak.index') }}"><i style="color: white;"
                                     class="bi bi-arrow-right-short"></i>Lokasi/Rak/Bin</a>
+                        </li>
+                        <li class="{{ Request::is('admin/user/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.user.index') }}"><i style="color: white;"
+                                    class="bi bi-arrow-right-short"></i>User</a>
                         </li>
                     </ul>
                 </li>
@@ -635,9 +635,9 @@
                         <div class="menu-title" style="color: white;">Transaksi</div>
                     </a>
                     <ul>
-                        <li class="{{ Request::is('admin/promo/*') ? 'mm-active' : '' }}"> <a
-                                href="{{ route('admin.promo.index') }}"><i
-                                    class="bi bi-arrow-right-short"></i>Promo</a>
+                        <li class="{{ Request::is('admin/penjualan/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.penjualan.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Penjualan</a>
                         </li>
                         <li class="{{ Request::is('admin/pembelian/*') ? 'mm-active' : '' }}"> <a
                                 href="{{ route('admin.pembelian.index') }}"><i
@@ -647,9 +647,9 @@
                                 href="{{ route('admin.stok.index') }}"><i
                                     class="bi bi-arrow-right-short"></i>Stok</a>
                         </li>
-                        <li class="{{ Request::is('admin/penjualan/*') ? 'mm-active' : '' }}"> <a
-                                href="{{ route('admin.penjualan.index') }}"><i
-                                    class="bi bi-arrow-right-short"></i>Penjualan</a>
+                        <li class="{{ Request::is('admin/promo/*') ? 'mm-active' : '' }}"> <a
+                                href="{{ route('admin.promo.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Promo</a>
                         </li>
                         <li class="{{ Request::is('admin/retur/*') ? 'mm-active' : '' }}"> <a
                                 href="{{ route('admin.retur.index') }}"><i
