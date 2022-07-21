@@ -25,7 +25,7 @@
                         <label for="formFile"  class="form-label">Nomor Transaksi</label>
                         <select name="noTransaksi" id="notransaksi" class="select2 form-select form-select-sm mb-3 select2" required>
                             @foreach ($penjualan as $d)
-                            <option value="{{ $d->id }}" data-tanggal="{{ $d->tanggalPenjualan }}">{{ $d->noTransaksi }}</option>
+                            <option value="{{ $d->noTransaksi }}" data-tanggal="{{ $d->tanggalPenjualan }}">{{ $d->noTransaksi }}</option>
                             @endforeach
                             
 
@@ -53,7 +53,8 @@
                             placeholder="Tanggal Transaksi" aria-label="default input example" required>
                     </div>
                 </div>
-                <div class="row">
+                <input type="hidden" name="jenisRetur" value="Penjualan" required>
+                {{-- <div class="row">
                     <div class="mb-3 col">
                         <label for="formFile" class="form-label">Jenis Retur</label>
                         <select name="jenisRetur" id="jenisRetur" class="form-select form-select-sm mb-3 select2" required>
@@ -63,7 +64,7 @@
 
                         </select>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="formFile" class="form-label">Sparepart</label>
