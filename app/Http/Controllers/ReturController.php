@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Retur;
+use App\Models\Penjualan;
 use App\Models\Sparepart;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class ReturController extends Controller
     public function create()
     {
         $sparepart = Sparepart::latest()->get();
-        return view('admin.retur.create', compact('sparepart'));
+        $penjualan = Penjualan::all();
+        return view('admin.retur.create', compact('sparepart', 'penjualan'));
     }
 
     /**
@@ -42,6 +44,7 @@ class ReturController extends Controller
     public function store(Request $req)
     {
         // Retur::create($request->all());
+
         $input = $req->all();
         if ($req->file) {
             $name = $req->file('file')->getClientOriginalName();

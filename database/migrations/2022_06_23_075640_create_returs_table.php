@@ -17,6 +17,7 @@ class CreateRetursTable extends Migration
             $table->id();
             $table->string('noTransaksi');
             $table->date('tanggalTransaksi');
+            $table->date('tanggaRetur');
             $table->string('jenisRetur');
             $table->unsignedBigInteger('sparepart_id');
             $table->foreign('sparepart_id')->references('id')->on('spareparts')->onDelete('restrict');
