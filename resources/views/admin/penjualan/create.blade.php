@@ -89,7 +89,7 @@
             </div>
 
             <div class="card-footer text-end">
-                <button type="submit" class="btn btn-primary px-3 radius-30"><i class="bi  bi-file-plus-fill"></i></button>
+                <button type="submit" class="btn btn-primary px-3 radius-30"><i class="bi  bi-file-plus-fill"></i> Tambah</button>
                 {{-- <a href="{{ route('admin.penjualan.show', $penjualan->id) }}" class="btn btn-danger px-3 radius-30"><i
                         class="bi bi-backspace-fill"></i> Batal</a> --}}
             </div>
