@@ -145,12 +145,11 @@
             <br>
             <div class="ttd">
                 <p style="margin:0px"> Banjarmasin, {{ $now }}</p>
-                {{-- <h6 style="margin:0px">Mengetahui</h6>
+                <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Manager</h5>
                 <br>
                 <br>
-                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5> --}}
-                {{-- <h5 style="margin:0px">NIP. 19710830 199101 1 002</h5> --}}
+                <h5 style="text-decoration:underline; margin:0px">{{ $ttdName }}</h5>
             </div>
         </div>
     </div>

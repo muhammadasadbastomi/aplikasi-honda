@@ -23,7 +23,8 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30>
                     <a class="dropdown-item" href="{{ route('admin.report.promoAll') }}" target="_blank">Cetak
                         Keseluruhan</a>
-
+                        <a href="#" data-bs-toggle="modal" data-route="{{ route('admin.report.promoMonth') }}"
+                        data-bs-target="#bulanModal" class="dropdown-item cetakBulan">Cetak Filter Bulan</a>
 
                 </div>
             </div>
@@ -88,4 +89,5 @@
         </div>
     </div>
     @include('layouts.modal.destroy')
+    @include('layouts.modal.reportBulan')
 @endsection

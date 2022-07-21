@@ -109,33 +109,35 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">LAPORAN DATA BARANG YANG MENIPIS</h2>
+            <h2 style="text-align:center;">LAPORAN DATA PROMO</h2>
+            <p style="text-align:center;">{{ strToUpper(carbon\carbon::parse($tanggalAwal )->translatedFormat('d F Y').' - '.carbon\carbon::parse($tanggalAkhir)->translatedFormat('d F Y')) }}</p>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
                 style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
-            <thead>
+                <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Gudang</th>
-                        <th>Part Number</th>
-                        <th>Nama Part</th>
-                        <th>Stok</th>
-                        <th>Harga Jual</th>
+                        <th>Nama Promo</th>
+                        <th>Nama Sparepart</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Selesai</th>
+                        <th>Jumlah Diskon</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $d)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $d->rak->gudang }}</td>
-                            <td>{{ $d->sparepart->partNumber }}</td>
-                            <td>{{ $d->sparepart->deskripsi }}</td>
-                            <td>{{ $d->stok }}</td>
-                            <td>@currency($d->hargaJual)</td>
+                            <td style="text-align: left">{{ $d->judul }}</td>
+                            <td style="text-align: left">{{ $d->sparepart->deskripsi }}</td>
+                            <td>{{ carbon\carbon::parse($d->tanggalMulai)->translatedFormat('d F Y') }}
+                            </td>
+                            <td>{{ carbon\carbon::parse($d->tanggalSelesai)->translatedFormat('d F Y') }}
+                            </td>
+                            <td>{{ $d->diskon }}%</td>
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
             <br>
             <br>
@@ -145,7 +147,7 @@
                 <h5 style="margin:0px">Manager</h5>
                 <br>
                 <br>
-                <h5 style="text-decoration:underline; margin:0px">{{$ttdName}}</h5> --}}
+                <h5 style="text-decoration:underline; margin:0px">{{ $ttdName }}</h5> --}}
                 {{-- <h5 style="margin:0px">NIP. 19710830 199101 1 002</h5> --}}
             </div>
         </div>

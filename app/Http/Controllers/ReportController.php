@@ -357,6 +357,66 @@ class ReportController extends Controller
         return $pdf->stream('Laporan Semua Retur Barang.pdf');
     }
 
+    public function PromoMonth(Request $request)
+    {
+        // $data = Penjualan::whereYear('tanggalPenjualan', '=', $request->year)->whereMonth('tanggalPenjualan', '=', $request->month)->get();
+        $tanggalAwal = $request->tanggalAwal;
+        $tanggalAkhir = $request->tanggalAkhir;
+        $data = Promo::whereBetween('tanggalMulai', [$tanggalAwal, $tanggalAkhir])->get();
+        // dd($data);
+
+        $now = $this->now;
+        $year = $request->year;
+        // switch ($request->month) {
+        //     case '01':
+        //         $month = 'Januari';
+        //         break;
+        //     case '02':
+        //         $month = 'Februari';
+        //         break;
+        //     case '03':
+        //         $month = 'Maret';
+        //         break;
+        //     case '04':
+        //         $month = 'April';
+        //         break;
+        //     case '05':
+        //         $month = 'Mei';
+        //         break;
+        //     case '06':
+        //         $month = 'Juni';
+        //         break;
+        //     case '07':
+        //         $month = 'Juli';
+        //         break;
+        //     case '08':
+        //         $month = 'Agustus';
+        //         break;
+        //     case '09':
+        //         $month = 'September';
+        //         break;
+        //     case '10':
+        //         $month = 'Oktober';
+        //         break;
+        //     case '11':
+        //         $month = 'November';
+        //         break;
+        //     case '12':
+        //         $month = 'Desember';
+        //         break;
+
+        //     default:
+        //         # code...
+        //         break;
+        // }
+        // $month = strToUpper($month);
+        // dd($data);
+        $pdf = PDF::loadView('admin.promo.report.promoMonth', ['data' => $data, 'now' => $now, 'year' => $year, 'tanggalAwal' => $tanggalAwal, 'tanggalAkhir' => $tanggalAkhir,]);
+        $pdf->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Laporan Kegiatan Bulanan.pdf');
+    }
+
     public function konflikYear(Request $request)
     {
         $data = Konflik::whereYear('tanggal_konflik', '=', $request->year)->get();

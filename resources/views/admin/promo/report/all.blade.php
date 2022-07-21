@@ -127,8 +127,8 @@
                     @foreach ($data as $d)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $d->judul }}</td>
-                            <td>{{ $d->sparepart->deskripsi }}</td>
+                            <td style="text-align: left">{{ $d->judul }}</td>
+                            <td style="text-align: left">{{ $d->sparepart->deskripsi }}</td>
                             <td>{{ carbon\carbon::parse($d->tanggalMulai)->translatedFormat('d F Y') }}
                             </td>
                             <td>{{ carbon\carbon::parse($d->tanggalSelesai)->translatedFormat('d F Y') }}
