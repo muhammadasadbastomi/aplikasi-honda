@@ -135,7 +135,7 @@
                             <td>{{ $d->gudang }}</td>
                             <td>{{ $d->kodeRak }}</td>
                             <td>{{ $d->kodeBinbox }}</td>
-                            <td>{{ $d->keterangan }}</td>
+                            <td style="text-align: left">{{ $d->keterangan }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -109,67 +109,70 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">LAPORAN OMSET PENJUALAN BULAN {{ $month }} TAHUN {{ $year }}
+            <h2 style="text-align:center;">LAPORAN OMSET PENJUALAN BULAN 
             </h2>
+            <p style="text-align:center;">{{ strToUpper(carbon\carbon::parse($tanggalAwal )->translatedFormat('d F Y').' - '.carbon\carbon::parse($tanggalAkhir)->translatedFormat('d F Y')) }}</p>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
                 style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
                 <thead style="font-size:12px !important;">
                     <tr>
                         <th rowspan="2">No</th>
-                        <th>Tanggal Penjualan</th>
-                        <th>No Transaksi</th>
-                        <th colspan="2">Nama Customer</th>
-                        <th rowspan="3">Harga</th>
-                        <th rowspan="3">Diskon</th>
-                        <th rowspan="3">Total Harga</th>
+                        <th rowspan="2">Tanggal Penjualan</th>
+                        <th rowspan="2">No Transaksi</th>
+                        <th colspan="2" rowspan="2">Nama Customer</th>
+                        {{-- <th rowspan="2">Harga</th> --}}
+                        {{-- <th rowspan="2">Diskon</th> --}}
+                        <th rowspan="2">Total Harga</th>
                     </tr>
                     <tr>
-                        <th>No</th>
-                        <th>Part Number</th>
-                        <th>Part Deskripsi</th>
-                        <th>Qty SJ (PCS)</th>
+                        {{-- <th>No</th>
+                        <th>Part Number</th> --}}
+                        {{-- <th>Part Deskripsi</th>
+                        <th>Qty SJ (PCS)</th> --}}
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $d)
                         <tr>
-                            <td rowspan="{{ $d->span }}">{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td>
                             <td>{{ $d->noTransaksi }}</td>
                             <td colspan="2">{{ $d->namaCustomer }}</td>
-                            @foreach ($d->penjualan_detail as $d)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $d->sparepart->partNumber }}</td>
-                            <td>{{ $d->sparepart->deskripsi }}</td>
-                            <td>{{ $d->jumlah }}</td>
-                            <td>@currency($d->hargaJual)</td>
+                            {{-- <td colspan="4"></td> --}}
+                            <td>@currency($d->harga)</td>
+                            {{-- @foreach ($d->penjualan_detail as $dd) --}}
+                        {{-- <tr> --}}
+                            {{-- <td>{{ $loop->iteration }}</td> --}}
+                            {{-- <td>{{ $dd->sparepart->partNumber }}</td>
+                            <td>{{ $dd->sparepart->deskripsi }}</td>
+                            <td>{{ $dd->jumlah }}</td>
+                            <td>@currency($dd->hargaJual)</td> --}}
                             {{-- @php
-                                $diskon = $d->diskon;
-                                $harga = $d->hargaJual * $d->jumlah;
-                                if ($diskon) {
-                                    $diskonHarga = ($harga * $diskon) / 100;
-                                    $harga = $harga - $diskonHarga;
+                                $ddiskon = $dd->diskon;
+                                $harga = $dd->hargaJual * $dd->jumlah;
+                                if ($ddiskon) {
+                                    $ddiskonHarga = ($harga * $ddiskon) / 100;
+                                    $harga = $harga - $ddiskonHarga;
                                 } else {
-                                    $diskon = 0;
+                                    $ddiskon = 0;
                                 }
                             @endphp --}}
-                            <td>
-                                {{-- {{ $diskon }}% --}}
-                                {{ $d->diskon }}%
-                            </td>
+                            {{-- <td> --}}
+                                {{-- {{ $ddiskon }}% --}}
+                                {{-- {{ $dd->diskon }}% --}}
+                            {{-- </td> --}}
                             {{-- <td>@currency($harga)</td> --}}
-                            <td>@currency($d->harga)</td>
+                            
 
 
-                        </tr>
-                    @endforeach
+                        {{-- </tr> --}}
+                    {{-- @endforeach --}}
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <h5 style="text-align: right">TOTAL OMSET PENJUALAN : @currency($data->sum('harga'))</h5>
+            <h5 style="text-align: right; font-size:20px;">TOTAL OMSET PENJUALAN : @currency($data->sum('harga'))</h5>
             <br>
             <br>
             <div class="ttd">

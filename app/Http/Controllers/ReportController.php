@@ -99,14 +99,108 @@ class ReportController extends Controller
         return $pdf->stream('Laporan Semua Pembelian.pdf');
     }
 
+    public function PembelianMonth(Request $request)
+    {
+        // $data = Penjualan::whereYear('tanggalPenjualan', '=', $request->year)->whereMonth('tanggalPenjualan', '=', $request->month)->get();
+        $tanggalAwal = $request->tanggalAwal;
+        $tanggalAkhir = $request->tanggalAkhir;
+        $data = Pembelian::whereBetween('tanggalPembelian', [$tanggalAwal, $tanggalAkhir])->get();
+        // dd($data);
+        $data->map(function ($item) {
+            $item['span'] = $item->pembelian_detail->count() + 1;
+            $item->pembelian_detail->map(function ($i) {
+                $diskon = $i->diskon;
+                $harga = $i->hargaBeli * $i->jumlahSj;
+                if ($diskon) {
+                    $diskonHarga = ($harga * $diskon) / 100;
+                    $harga = $harga - $diskonHarga;
+                } else {
+                    $diskon = 0;
+                }
+                $i['diskon'] = $diskon;
+                $i['harga'] = $harga;
+                return $i;
+            });
+            // dd($item->pembelian_detail);
+            $item['harga'] = $item->pembelian_detail->sum('harga');
+            return $item;
+        });
+        $now = $this->now;
+        $year = $request->year;
+        // switch ($request->month) {
+        //     case '01':
+        //         $month = 'Januari';
+        //         break;
+        //     case '02':
+        //         $month = 'Februari';
+        //         break;
+        //     case '03':
+        //         $month = 'Maret';
+        //         break;
+        //     case '04':
+        //         $month = 'April';
+        //         break;
+        //     case '05':
+        //         $month = 'Mei';
+        //         break;
+        //     case '06':
+        //         $month = 'Juni';
+        //         break;
+        //     case '07':
+        //         $month = 'Juli';
+        //         break;
+        //     case '08':
+        //         $month = 'Agustus';
+        //         break;
+        //     case '09':
+        //         $month = 'September';
+        //         break;
+        //     case '10':
+        //         $month = 'Oktober';
+        //         break;
+        //     case '11':
+        //         $month = 'November';
+        //         break;
+        //     case '12':
+        //         $month = 'Desember';
+        //         break;
+
+        //     default:
+        //         # code...
+        //         break;
+        // }
+        // $month = strToUpper($month);
+        // dd($data);
+        $pdf = PDF::loadView('admin.pembelian.report.pembelianMonth', ['data' => $data, 'now' => $now, 'year' => $year, 'tanggalAwal' => $tanggalAwal, 'tanggalAkhir' => $tanggalAkhir,]);
+        $pdf->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Laporan Kegiatan Bulanan.pdf');
+    }
+
     public function penjualanAll()
     {
         $data = Penjualan::latest()->get();
 
         $data->map(function ($item) {
             $item['span'] = $item->penjualan_detail->count() + 1;
+            $item->penjualan_detail->map(function ($i) {
+                $diskon = $i->diskon;
+                $harga = $i->hargaJual * $i->jumlah;
+
+                if ($diskon) {
+                    $diskonHarga = ($harga * $diskon) / 100;
+                    $harga = $harga - $diskonHarga;
+                } else {
+                    $diskon = 0;
+                }
+                $i['diskon'] = $diskon;
+                $i['harga'] = $harga;
+                return $i;
+            });
+            $item['total'] = $item->penjualan_detail->sum('harga');
             return $item;
         });
+        // dd($data);
         $now = $this->now;
         $ttdName = $this->ttdName;
         $pdf = PDF::loadView('admin.penjualan.report.all', ['data' => $data, 'now' => $now, 'ttdName' => $ttdName]);
@@ -163,7 +257,11 @@ class ReportController extends Controller
 
     public function PenjualanMonth(Request $request)
     {
-        $data = Penjualan::whereYear('tanggalPenjualan', '=', $request->year)->whereMonth('tanggalPenjualan', '=', $request->month)->get();
+        // $data = Penjualan::whereYear('tanggalPenjualan', '=', $request->year)->whereMonth('tanggalPenjualan', '=', $request->month)->get();
+        $tanggalAwal = $request->tanggalAwal;
+        $tanggalAkhir = $request->tanggalAkhir;
+        $data = Penjualan::whereBetween('tanggalPenjualan', [$tanggalAwal, $tanggalAkhir])->get();
+        // dd($data);
         $data->map(function ($item) {
             $item['span'] = $item->penjualan_detail->count() + 1;
             $item->penjualan_detail->map(function ($i) {
@@ -185,51 +283,51 @@ class ReportController extends Controller
         });
         $now = $this->now;
         $year = $request->year;
-        switch ($request->month) {
-            case '01':
-                $month = 'Januari';
-                break;
-            case '02':
-                $month = 'Februari';
-                break;
-            case '03':
-                $month = 'Maret';
-                break;
-            case '04':
-                $month = 'April';
-                break;
-            case '05':
-                $month = 'Mei';
-                break;
-            case '06':
-                $month = 'Juni';
-                break;
-            case '07':
-                $month = 'Juli';
-                break;
-            case '08':
-                $month = 'Agustus';
-                break;
-            case '09':
-                $month = 'September';
-                break;
-            case '10':
-                $month = 'Oktober';
-                break;
-            case '11':
-                $month = 'November';
-                break;
-            case '12':
-                $month = 'Desember';
-                break;
+        // switch ($request->month) {
+        //     case '01':
+        //         $month = 'Januari';
+        //         break;
+        //     case '02':
+        //         $month = 'Februari';
+        //         break;
+        //     case '03':
+        //         $month = 'Maret';
+        //         break;
+        //     case '04':
+        //         $month = 'April';
+        //         break;
+        //     case '05':
+        //         $month = 'Mei';
+        //         break;
+        //     case '06':
+        //         $month = 'Juni';
+        //         break;
+        //     case '07':
+        //         $month = 'Juli';
+        //         break;
+        //     case '08':
+        //         $month = 'Agustus';
+        //         break;
+        //     case '09':
+        //         $month = 'September';
+        //         break;
+        //     case '10':
+        //         $month = 'Oktober';
+        //         break;
+        //     case '11':
+        //         $month = 'November';
+        //         break;
+        //     case '12':
+        //         $month = 'Desember';
+        //         break;
 
-            default:
-                # code...
-                break;
-        }
-        $month = strToUpper($month);
+        //     default:
+        //         # code...
+        //         break;
+        // }
+        // $month = strToUpper($month);
         // dd($data);
-        $pdf = PDF::loadView('admin.penjualan.report.penjualanMonth', ['data' => $data, 'now' => $now, 'year' => $year, 'month' => $month]);
+        $pdf = PDF::loadView('admin.penjualan.report.penjualanMonth', ['data' => $data, 'now' => $now, 'year' => $year, 'tanggalAwal' => $tanggalAwal, 'tanggalAkhir' => $tanggalAkhir,]);
         $pdf->setPaper('a4', 'landscape');
 
         return $pdf->stream('Laporan Kegiatan Bulanan.pdf');

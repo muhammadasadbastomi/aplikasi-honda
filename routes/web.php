@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/cetak/penjualan', [ReportController::class, 'penjualanAll'])->name('penjualanAll');
             Route::get('/cetak/penjualan/{id}', [ReportController::class, 'penjualanOne'])->name('penjualanOne');
             Route::post('/cetak/penjualan/month', [ReportController::class, 'penjualanMonth'])->name('penjualanMonth');
+            Route::post('/cetak/pembelian/month', [ReportController::class, 'pembelianMonth'])->name('pembelianMonth');
             Route::get('/cetak/retur', [ReportController::class, 'returAll'])->name('returAll');
             Route::get('/cetak/promo', [ReportController::class, 'promoAll'])->name('promoAll');
             // Route::post('/cetak/kegiatan-tahun', [ReportController::class, 'kegiatanYear'])->name('kegiatanYear');

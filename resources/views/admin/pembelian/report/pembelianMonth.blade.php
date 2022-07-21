@@ -109,91 +109,63 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">NOTA PENJUALAN</h2>
-            <h5 style="text-align:left;">NAMA CUSTOMER &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;:
-                {{ strtoupper($data->first()->namaCustomer) }}
-            </h5>
-            <h5 style="text-align:left;">NO TRANSAKSI &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:
-                {{ strtoupper($data->first()->noTransaksi) }}</h5>
-            {{-- carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') --}}
-            <h5 style="text-align:left;">TANGGAL PENJUALAN &nbsp; :
-                {{ strtoupper(carbon\carbon::parse($data->first()->tanggalPenjualan)->translatedFormat('d F Y')) }}
-            </h5>
-
+            <h2 style="text-align:center;">LAPORAN DATA PENERIMAAN</h2>
+            <p style="text-align:center;">{{ strToUpper(carbon\carbon::parse($tanggalAwal )->translatedFormat('d F Y').' - '.carbon\carbon::parse($tanggalAkhir)->translatedFormat('d F Y')) }}</p>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
                 style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
                 <thead style="font-size:12px !important;">
                     <tr>
-                        {{-- <th rowspan="2">No</th> --}}
-                        <th></th>
-                        <th></th>
-                        {{-- <th>No Transaksi</th> --}}
-                        <th colspan="2"></th>
-                        <th rowspan="3">Harga</th>
-                        <th rowspan="3">Diskon</th>
-                        <th rowspan="3">Total Harga</th>
-                        {{-- <th rowspan="{{ $data->sum('span') + 2 }}">Total Keseluruhan</th> --}}
+                        <th rowspan="2">No</th>
+                        <th>Tanggal Penerimaan</th>
+                        <th>No Transaksi</th>
+                        <th colspan="2">No Faktur</th>
+                        <th rowspan="2">Jumlah RFS</th>
+                        <th rowspan="2">Rak</th>
+                        <th rowspan="2">Harga Beli/Pcs</th>
+                        <th rowspan="2">Total Harga Netto</th>
+                        <th rowspan="2">Harga Jual/Pcs</th>
                     </tr>
                     <tr>
                         <th>No</th>
                         <th>Part Number</th>
                         <th>Part Deskripsi</th>
                         <th>Qty SJ (PCS)</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $d)
                         <tr>
-                            {{-- <td rowspan="{{ $d->span }}">{{ $loop->iteration }}</td> --}}
-                            {{-- <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td> --}}
-                            <td></td>
-                            <td></td>
-                            {{-- <td colspan="2">{{ $d->namaCustomer }}</td> --}}
-                            <td colspan="2"></td>
-                            @foreach ($d->penjualan_detail as $d)
+                            <td rowspan="{{ $d->span }}">{{ $loop->iteration }}</td>
+                            <td>{{ carbon\carbon::parse($d->tanggalPembelian)->translatedFormat('d F Y') }}</td>
+                            <td>{{ $d->noTransaksi }}</td>
+                            <td colspan="2">{{ $d->noFaktur }}</td>
+                            <td colspan="5"></td>
+                            
+                            @foreach ($d->pembelian_detail as $d)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $d->sparepart->partNumber }}</td>
                             <td>{{ $d->sparepart->deskripsi }}</td>
-                            <td>{{ $d->jumlah }}</td>
-                            <td style="text-align: right;">@currency($d->hargaJual)</td>
-                            {{-- @php
-                                $diskon = $d->diskon;
-                                $harga = $d->hargaJual * $d->jumlah;
-                                if ($diskon) {
-                                    $diskonHarga = ($harga * $diskon) / 100;
-                                    $harga = $harga - $diskonHarga;
-                                } else {
-                                    $diskon = 0;
-                                }
-                            @endphp --}}
-                            <td>
-                                {{-- {{ $diskon }}% --}}
-                                {{ $d->diskon }}%
-                            </td>
-                            {{-- <td>@currency($harga)</td> --}}
-                            <td style="text-align: right;">@currency($d->harga)</td>
-
-
+                            <td>{{ $d->jumlahSj }}</td>
+                            <td>{{ $d->jumlahRfs }}</td>
+                            <td>{{ $d->rak->kodeLokasi }}</td>
+                            <td>@currency($d->hargaBeli)</td>
+                            <td>@currency($d->hargaBeli * $d->jumlahSj)</td>
+                            <td>@currency($d->sparepart->stok->hargaJual)</td>
                         </tr>
                     @endforeach
-                    {{-- <tr>
-                        <td colspan="2">TOTAL HARGA</td>
-                        <td colspan="2">@C</td>
-                    </tr> --}}
-                    {{-- <td colspan="8">Total Harga</td>
-                    <td>@currency($data->sum('harga'))</td> --}}
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <h5 style="text-align:right; font-size:20px">TOTAL HARGA : @currency($data->sum('harga'))</h5>
+            <h5 style="text-align: right; font-size:20px;">TOTAL PEMBELIAN KESELURUHAN : @currency($data->sum('harga'))</h5>
             <br>
             <br>
             <div class="ttd">
                 <p style="margin:0px"> Banjarmasin, {{ $now }}</p>
-                {{-- <h6 style="margin:0px">Mengetahui</h6>
+                {{-- {{-- <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Manager</h5>
                 <br>
                 <br>

@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     @csrf
                     <div class="row">
-                        <div class="mb-3 col">
+                        {{-- <div class="mb-3 col">
                             <label for="formFile" class="form-label">Pilih Bulan</label>
                             <select name="month" id="month" class="form-select form-select-sm mb-3 " required>
                                 <option value="">Pilih Bulan</option>
@@ -26,14 +26,25 @@
                                 <option value="11">November</option>
                                 <option value="12">Desember</option>
                             </select>
-                        </div>
+                        </div> --}}
+                         <div class="mb-3 col">
+                            <label for="formFile" class="form-label">Tanggal Awal</label>
+                            <input type="date" name="tanggalAwal" class="form-control form-control-sm mb-3"
+                                id="input1" required>
+                         </div>
+
                     </div>
                     <div class="row">
                         <div class="mb-3 col">
+                            <label for="formFile" class="form-label">Tanggal Akhir</label>
+                            <input type="date" name="tanggalAkhir" class="form-control form-control-sm mb-3"
+                                id="input1" required>
+                         </div>
+                        {{-- <div class="mb-3 col">
                             <label for="formFile" class="form-label">Tahun</label>
                             <input type="text" name="year" class="form-control form-control-sm mb-3"
                                 id="input1" required>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>

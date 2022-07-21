@@ -140,8 +140,8 @@
                     @foreach ($data as $d)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td class="text-start">{{ $d->partNumber }}</td>
-                            <td class="text-start">{{ $d->deskripsi }}</td>
+                            <td >{{ $d->partNumber }}</td>
+                            <td style="text-align: left">{{ $d->deskripsi }}</td>
                             <td>{{ $d->partReference }}</td>
                             {{-- <td>{{$d->kodeSupplier}}</td>
                          <td>{{$d->kodeGroupSales}}</td> --}}

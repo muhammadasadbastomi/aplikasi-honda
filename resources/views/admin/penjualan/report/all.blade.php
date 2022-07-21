@@ -137,34 +137,40 @@
                             <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td>
                             <td>{{ $d->noTransaksi }}</td>
                             <td colspan="2">{{ $d->namaCustomer }}</td>
-                            @foreach ($d->penjualan_detail as $d)
+                            @foreach ($d->penjualan_detail as $da)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $d->sparepart->partNumber }}</td>
-                            <td>{{ $d->sparepart->deskripsi }}</td>
-                            <td>{{ $d->jumlah }}</td>
-                            <td>@currency($d->hargaJual)</td>
-                            @php
-                                $diskon = $d->diskon;
-                                $harga = $d->hargaJual * $d->jumlah;
-                                if ($diskon) {
-                                    $diskonHarga = ($harga * $diskon) / 100;
-                                    $harga = $harga - $diskonHarga;
+                            <td>{{ $da->sparepart->partNumber }}</td>
+                            <td>{{ $da->sparepart->deskripsi }}</td>
+                            <td>{{ $da->jumlah }}</td>
+                            <td>@currency($da->hargaJual)</td>
+                            {{-- @php
+                                $daiskon = $da->diskon;
+                                $harga = $da->hargaJual * $da->jumlah;
+                                if ($daiskon) {
+                                    $daiskonHarga = ($harga * $daiskon) / 100;
+                                    $harga = $harga - $daiskonHarga;
                                 } else {
-                                    $diskon = 0;
+                                    $daiskon = 0;
                                 }
-                            @endphp
+                            @endphp --}}
                             <td>
-                                {{ $diskon }}%
+                                {{ $da->diskon }}%
                             </td>
-                            <td>@currency($harga)</td>
+                            <td>@currency($da->harga)</td>
 
                         </tr>
                     @endforeach
                     </tr>
+                    <tr>
+                        <td colspan="7">TOTAL HARGA</td>
+                        <td colspan="1">@currency($d->total)</td>
+                        {{-- <td colspan="1">{{ $d->total }}</td> --}}
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
+            <h5 style="text-align:right; font-size:20px">TOTAL HARGA KESELURUHAN : @currency($data->sum('total'))</h5>
             <br>
             <br>
             <div class="ttd">

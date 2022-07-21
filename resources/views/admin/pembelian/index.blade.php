@@ -23,6 +23,8 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30>
                     <a class="dropdown-item" href="{{ route('admin.report.pembelianAll') }}" target="_blank">Cetak
                         Keseluruhan</a>
+                        <a href="#" data-bs-toggle="modal" data-route="{{ route('admin.report.pembelianMonth') }}"
+                        data-bs-target="#bulanModal" class="dropdown-item cetakBulan">Cetak Omset Bulanan</a>
                 </div>
             </div>
         </div>
@@ -83,4 +85,5 @@
     </div>
 
     @include('layouts.modal.destroy')
+    @include('layouts.modal.reportBulan')
 @endsection
