@@ -78,7 +78,8 @@ class ReturController extends Controller
     public function edit(Retur $retur)
     {
         $sparepart = Sparepart::latest()->get();
-        return view('admin.retur.edit', compact('retur', 'sparepart'));
+        $penjualan = Penjualan::all();
+        return view('admin.retur.edit', compact('retur', 'sparepart', 'penjualan'));
     }
 
     /**

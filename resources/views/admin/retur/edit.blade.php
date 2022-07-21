@@ -23,21 +23,31 @@
                 @method('put')
                 <div class="row">
                     <div class="mb-3 col">
-                        <label for="formFile" class="form-label">No Transaksi</label>
-                        <input class="form-control form-control-sm mb-3" type="text" name="noTransaksi"
-                            placeholder="No Transaksi" value="{{ $retur->noTransaksi }}"
-                            aria-label="default input example" required>
+                        <label for="formFile"  class="form-label">Nomor Transaksi</label>
+                        <select name="noTransaksi" id="notransaksi" class="select2 form-select form-select-sm mb-3 select2" required>
+                            @foreach ($penjualan as $d)
+                            <option value="{{ $d->noTransaksi }}" data-tanggal="{{ $d->tanggalPenjualan }}" {{ $d->noTransaksi == $retur->noTransaksi ? 'selected' :''}}>{{ $d->noTransaksi }}</option>
+                            @endforeach
+                            
+
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="formFile" class="form-label">Tanggal Transaksi</label>
-                        <input class="form-control form-control-sm mb-3" type="date"
-                            value="{{ $retur->tanggalTransaksi }}" name="tanggalTransaksi" placeholder="Tanggal Transaksi"
-                            aria-label="default input example" required>
+                        <input class="form-control form-control-sm mb-3" id="tanggal"  type="date" name="tanggalTransaksi"
+                            placeholder="Tanggal Transaksi" value="{{ $retur->tanggalTransaksi }}" aria-label="default input example" required readonly>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="mb-3 col">
+                        <label for="formFile" id="tanggalRetur" class="form-label">Tanggal Retur</label>
+                        <input class="form-control form-control-sm mb-3" type="date" name="tanggalRetur"
+                            placeholder="Tanggal Transaksi" value="{{ $retur->tanggalRetur }}" aria-label="default input example" required>
+                    </div>
+                </div>
+                {{-- <div class="row">
                     <div class="mb-3 col">
                         <label for="formFile" class="form-label">Jenis Retur</label>
                         <select name="jenisRetur" id="jenisRetur" class="form-select form-select-sm mb-3 select2" required>
@@ -49,7 +59,7 @@
 
                         </select>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <div class="mb-3 col">
                         <label for="formFile" class="form-label">Sparepart</label>
@@ -93,3 +103,15 @@
         </form>
     </div>
 @endsection
+@push('script')
+    <script>
+           $(document).ready(function() {
+            $('#notransaksi').change(function(){
+                // const tanggal = $(this).data('tanggal');
+                let tanggal = $("#notransaksi").find(':selected').data('tanggal')
+                $('#tanggal').val(tanggal)
+                // alert(tanggal)
+            });
+        });
+    </script>
+@endpush

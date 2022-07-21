@@ -23,7 +23,8 @@
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30>
                     <a class="dropdown-item" href="{{ route('admin.report.returAll') }}" target="_blank">Cetak
                         Keseluruhan</a>
-
+                        <a href="#" data-bs-toggle="modal" data-route="{{ route('admin.report.returMonth') }}"
+                        data-bs-target="#bulanModal" class="dropdown-item cetakBulan">Cetak Filter Bulan</a>
 
                 </div>
             </div>
@@ -46,6 +47,7 @@
                                         <th>No</th>
                                         <th>No Transaksi </th>
                                         <th>Tanggal Transaksi</th>
+                                        <th>Tanggal Retur</th>
                                         <th>Jenis Retur</th>
                                         <th>Nama Sparepart</th>
                                         <th>Jumlah Retur</th>
@@ -60,6 +62,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $d->noTransaksi }}</td>
                                             <td>{{ carbon\carbon::parse($d->tanggalTransaksi)->translatedFormat('d F Y') }}
+                                            </td>
+                                            <td>{{ carbon\carbon::parse($d->tanggalRetur)->translatedFormat('d F Y') }}
                                             </td>
                                             <td>{{ $d->jenisRetur }}</td>
                                             <td>{{ $d->sparepart->deskripsi }}</td>
@@ -90,4 +94,5 @@
         </div>
     </div>
     @include('layouts.modal.destroy')
+    @include('layouts.modal.reportBulan')
 @endsection
