@@ -29,7 +29,7 @@ class PromoController extends Controller
      */
     public function create()
     {
-        $sparepart = Sparepart::with('stok')->latest()->get();
+        $sparepart = Sparepart::with('stok')->whereHas('stok')->latest()->get();
         $sparepart->map(function ($item) {
 
             $item['jumlahStok'] = $item->stok->stok;
