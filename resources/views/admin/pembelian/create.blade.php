@@ -100,7 +100,7 @@
 
             <div class="card-footer text-end">
                 <button type="submit" class="btn btn-primary  radius-30"><i class="bi bi-file-plus-fill"></i>
-                </button>
+                 Tambah</button>
                 {{-- <a href="{{ route('admin.pembelian.show', $pembelian->id) }}" class="btn btn-danger px-3 radius-30"><i
                         class="bi bi-backspace-fill"></i> Batal</a> --}}
             </div>
