@@ -85,7 +85,7 @@
                         <input class="form-control form-control-sm mb-3" type="number" id="diskon" name="diskon"
                             placeholder="%" aria-label="default input example">
                     </div>
-                </div>
+            </div>
             </div>
 
             <div class="card-footer text-end">

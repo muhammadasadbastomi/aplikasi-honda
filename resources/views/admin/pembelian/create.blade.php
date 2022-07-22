@@ -91,7 +91,7 @@
                             placeholder="Quantity" aria-label="default input example" required>
                     </div>
                     <div class="mb-3 col">
-                        <label for="formFile" class="form-label">Harga Jual/Pcs (+ 20% dari harga beli)</label>
+                        <label for="formFile" class="form-label">Harga Jual/Pcs (+ 25% dari harga beli)</label>
                         <input class="form-control form-control-sm mb-3" type="number" name="hargaJual" id="hargaJual"
                             placeholder="Harga Jual/Pcs" aria-label="default input example" required readonly>
                     </div>
