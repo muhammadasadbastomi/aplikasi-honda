@@ -109,7 +109,7 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">LAPORAN DATA PROMO</h2>
+            <h2 style="text-align:center;">LAPORAN DATA PROMO PERIODE</h2>
             <p style="text-align:center;">{{ strToUpper(carbon\carbon::parse($tanggalAwal )->translatedFormat('d F Y').' - '.carbon\carbon::parse($tanggalAkhir)->translatedFormat('d F Y')) }}</p>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
