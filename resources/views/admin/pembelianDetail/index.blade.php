@@ -64,9 +64,9 @@
                                             <td>{{ $d->jumlahSj }}</td>
                                             <td>{{ $d->jumlahRfs }}</td>
                                             <td>{{ $d->rak->kodeLokasi }}</td>
-                                            <td>@currency($d->sparepart->hargaPokok)</td>
-                                            <td>@currency($d->totalHarga)</td>
-                                            <td>@currency($d->hargaJual)</td>
+                                            <td style="text-align: right;">@currency($d->sparepart->hargaPokok)</td>
+                                            <td style="text-align: right;">@currency($d->totalHarga)</td>
+                                            <td style="text-align: right;">@currency($d->hargaJual)</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="{{ route('admin.pembelianDetail.edit', $d->id) }}"

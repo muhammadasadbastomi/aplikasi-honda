@@ -1,15 +1,15 @@
-<div class="modal fade" id="bulanModal" tabindex="-1" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="bulananModal" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="titleBulan">Cetak Data Per Periode</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form target="_blank" id="bulanForm" action="" method="POST" enctype="multipart/form-data">
+            <form target="_blank" id="bulananForm" action="" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
                     <div class="row">
-                        {{-- <div class="mb-3 col">
+                        <div class="mb-3 col">
                             <label for="formFile" class="form-label">Pilih Bulan</label>
                             <select name="month" id="month" class="form-select form-select-sm mb-3 " required>
                                 <option value="">Pilih Bulan</option>
@@ -26,25 +26,25 @@
                                 <option value="11">November</option>
                                 <option value="12">Desember</option>
                             </select>
-                        </div> --}}
-                         <div class="mb-3 col">
+                        </div>
+                         {{-- <div class="mb-3 col">
                             <label for="formFile" class="form-label">Tanggal Awal</label>
                             <input type="date" name="tanggalAwal" class="form-control form-control-sm mb-3"
                                 id="input1" required>
-                         </div>
+                         </div> --}}
 
                     </div>
                     <div class="row">
-                        <div class="mb-3 col">
+                        {{-- <div class="mb-3 col">
                             <label for="formFile" class="form-label">Tanggal Akhir</label>
                             <input type="date" name="tanggalAkhir" class="form-control form-control-sm mb-3"
                                 id="input1" required>
-                         </div>
-                        {{-- <div class="mb-3 col">
+                         </div> --}}
+                        <div class="mb-3 col">
                             <label for="formFile" class="form-label">Tahun</label>
                             <input type="text" name="year" class="form-control form-control-sm mb-3"
                                 id="input1" required>
-                        </div> --}}
+                        </div>
 
                     </div>
                 </div>
@@ -59,9 +59,9 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $(".cetakBulan").click(function() {
+            $(".cetakBulanan").click(function() {
                 const route = $(this).data('route');
-                $('#bulanForm').attr('action', route);
+                $('#bulananForm').attr('action', route);
             });
         });
     </script>

@@ -172,7 +172,7 @@
                                 {{-- {{ $diskon }}% --}}
                                 {{ $d->diskon }}%
                             </td>
-                            {{-- <td>@currency($harga)</td> --}}
+                            {{-- <td style="text-align: right;">@currency($harga)</td> --}}
                             <td style="text-align: right;">@currency($d->harga)</td>
 
 
@@ -183,7 +183,7 @@
                         <td colspan="2">@C</td>
                     </tr> --}}
                     {{-- <td colspan="8">Total Harga</td>
-                    <td>@currency($data->sum('harga'))</td> --}}
+                    <td style="text-align: right;">@currency($data->sum('harga'))</td> --}}
                     </tr>
                     @endforeach
                 </tbody>

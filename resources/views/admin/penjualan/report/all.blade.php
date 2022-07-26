@@ -109,7 +109,7 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">LAPORAN DATA PENJUALAN KESELURUHAN</h2>
+            <h2 style="text-align:center;">LAPORAN DATA PENJUALAN {{ $year == null ? 'KESELURUHAN' : 'BULAN '.$month.' TAHUN '.$year.'' }}</h2>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
                 style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
@@ -136,14 +136,14 @@
                             <td rowspan="{{ $d->span }}">{{ $loop->iteration }}</td>
                             <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td>
                             <td>{{ $d->noTransaksi }}</td>
-                            <td colspan="2">{{ $d->namaCustomer }}</td>
+                            <td style="text-align: left;" colspan="2">{{ $d->namaCustomer }}</td>
                             @foreach ($d->penjualan_detail as $da)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $da->sparepart->partNumber }}</td>
                             <td>{{ $da->sparepart->deskripsi }}</td>
                             <td>{{ $da->jumlah }}</td>
-                            <td>@currency($da->hargaJual)</td>
+                            <td style="text-align: right;">@currency($da->hargaJual)</td>
                             {{-- @php
                                 $daiskon = $da->diskon;
                                 $harga = $da->hargaJual * $da->jumlah;
@@ -157,7 +157,7 @@
                             <td>
                                 {{ $da->diskon }}%
                             </td>
-                            <td>@currency($da->harga)</td>
+                            <td style="text-align: right;">@currency($da->harga)</td>
 
                         </tr>
                     @endforeach

@@ -109,7 +109,7 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">LAPORAN OMSET PENJUALAN BULAN 
+            <h2 style="text-align:center;">LAPORAN OMSET PENJUALAN PERIODE 
             </h2>
             <p style="text-align:center;">{{ strToUpper(carbon\carbon::parse($tanggalAwal )->translatedFormat('d F Y').' - '.carbon\carbon::parse($tanggalAkhir)->translatedFormat('d F Y')) }}</p>
             <br>
@@ -138,16 +138,16 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ carbon\carbon::parse($d->tanggalPenjualan)->translatedFormat('d F Y') }}</td>
                             <td>{{ $d->noTransaksi }}</td>
-                            <td colspan="2">{{ $d->namaCustomer }}</td>
+                            <td style="text-align: left;" colspan="2">{{ $d->namaCustomer }}</td>
                             {{-- <td colspan="4"></td> --}}
-                            <td>@currency($d->harga)</td>
+                            <td style="text-align: right;">@currency($d->harga)</td>
                             {{-- @foreach ($d->penjualan_detail as $dd) --}}
                         {{-- <tr> --}}
                             {{-- <td>{{ $loop->iteration }}</td> --}}
                             {{-- <td>{{ $dd->sparepart->partNumber }}</td>
                             <td>{{ $dd->sparepart->deskripsi }}</td>
                             <td>{{ $dd->jumlah }}</td>
-                            <td>@currency($dd->hargaJual)</td> --}}
+                            <td style="text-align: right;">@currency($dd->hargaJual)</td> --}}
                             {{-- @php
                                 $ddiskon = $dd->diskon;
                                 $harga = $dd->hargaJual * $dd->jumlah;
@@ -162,7 +162,7 @@
                                 {{-- {{ $ddiskon }}% --}}
                                 {{-- {{ $dd->diskon }}% --}}
                             {{-- </td> --}}
-                            {{-- <td>@currency($harga)</td> --}}
+                            {{-- <td style="text-align: right;">@currency($harga)</td> --}}
                             
 
 

@@ -151,9 +151,9 @@
                             <td>{{ $d->jumlahSj }}</td>
                             <td>{{ $d->jumlahRfs }}</td>
                             <td>{{ $d->rak->kodeLokasi }}</td>
-                            <td>@currency($d->hargaBeli)</td>
-                            <td>@currency($d->hargaBeli * $d->jumlahSj)</td>
-                            <td>@currency($d->sparepart->stok->hargaJual)</td>
+                            <td style="text-align: right;">@currency($d->hargaBeli)</td>
+                            <td style="text-align: right;">@currency($d->hargaBeli * $d->jumlahSj)</td>
+                            <td style="text-align: right;">@currency($d->sparepart->stok->hargaJual)</td>
                         </tr>
                     @endforeach
                     </tr>

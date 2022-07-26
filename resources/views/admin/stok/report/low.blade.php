@@ -131,7 +131,7 @@
                             <td>{{ $d->sparepart->partNumber }}</td>
                             <td>{{ $d->sparepart->deskripsi }}</td>
                             <td>{{ $d->stok }}</td>
-                            <td>@currency($d->hargaJual)</td>
+                            <td style="text-align: right;">@currency($d->hargaJual)</td>
                         </tr>
                     @endforeach
                 </tbody>

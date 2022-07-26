@@ -21,10 +21,12 @@
                     data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" px-3 radius-30>
-                    <a class="dropdown-item" href="{{ route('admin.report.penjualanAll') }}" target="_blank">Cetak
-                        Keseluruhan</a>
+                    {{-- <a class="dropdown-item" href="{{ route('admin.report.penjualanAll') }}" target="_blank">Cetak
+                        Keseluruhan</a> --}}
                     <a href="#" data-bs-toggle="modal" data-route="{{ route('admin.report.penjualanMonth') }}"
-                        data-bs-target="#bulanModal" class="dropdown-item cetakBulan">Cetak Omset Bulanan</a>
+                        data-bs-target="#bulananModal" class="dropdown-item cetakBulanan">Cetak Data Perbulan</a>
+                    <a href="#" data-bs-toggle="modal" data-route="{{ route('admin.report.penjualanMonth') }}"
+                        data-bs-target="#bulanModal" class="dropdown-item cetakBulan">Cetak Per Periode</a>
                     {{-- <a href="{{ route('admin.report.penjualanMonth', $d->id) }}" class="btn btn-primary"
                         target="_blank"><i class="bi bi-printer-fill"></i></a> --}}
                 </div>
@@ -93,4 +95,5 @@
     </div>
     @include('layouts.modal.destroy')
     @include('layouts.modal.reportBulan')
+    @include('layouts.modal.reportBulanan')
 @endsection

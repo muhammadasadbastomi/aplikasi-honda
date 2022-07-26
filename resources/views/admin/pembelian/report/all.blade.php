@@ -109,7 +109,7 @@
     <div class="container">
         <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">LAPORAN DATA PENERIMAAN KESELURUHAN</h2>
+            <h2 style="text-align:center;">LAPORAN DATA PENERIMAAN {{ $year == null ? 'KESELURUHAN' : 'BULAN '.$month.' TAHUN '.$year.'' }}</h2>
             <br>
             <table id="myTable" class="table table-bordered table-striped dataTable no-footer text-center"
                 style="font-size: 12px !important; " role="grid" aria-describedby="myTable_info">
@@ -149,9 +149,9 @@
                             <td>{{ $d->jumlahSj }}</td>
                             <td>{{ $d->jumlahRfs }}</td>
                             <td>{{ $d->rak->kodeLokasi }}</td>
-                            <td>@currency($d->hargaBeli)</td>
-                            <td>@currency($d->hargaBeli * $d->jumlahSj)</td>
-                            <td>@currency($d->sparepart->stok->hargaJual)</td>
+                            <td style="text-align: right;">@currency($d->hargaBeli)</td>
+                            <td style="text-align: right;">@currency($d->hargaBeli * $d->jumlahSj)</td>
+                            <td style="text-align: right;">@currency($d->sparepart->stok->hargaJual)</td>
                         </tr>
                     @endforeach
                     </tr>

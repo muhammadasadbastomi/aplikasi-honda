@@ -126,9 +126,9 @@
                                             <td>{{ $d->sparepart->partNumber }}</td>
                                             <td>{{ $d->sparepart->deskripsi }}</td>
                                             <td>{{ $d->jumlah }}</td>
-                                            <td>@currency($d->hargaJual)</td>
+                                            <td style="text-align: right;">@currency($d->hargaJual)</td>
                                             <td>{{ $d->diskon }}%</td>
-                                            <td>@currency($d->hargaTotal)</td>
+                                            <td style="text-align: right;">@currency($d->hargaTotal)</td>
                                             <td>
                                                 <div class="btn-group">
                                                     {{-- <a href="{{ route('admin.penjualanDetail.edit', $d->id) }}"
