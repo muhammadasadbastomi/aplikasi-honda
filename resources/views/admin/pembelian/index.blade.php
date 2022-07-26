@@ -26,7 +26,7 @@
                         <a href="#" data-bs-toggle="modal" data-route="{{ route('admin.report.pembelianMonth') }}"
                         data-bs-target="#bulananModal" class="dropdown-item cetakBulanan">Cetak Data Perbulan</a>
                         <a href="#" data-bs-toggle="modal" data-route="{{ route('admin.report.pembelianMonth') }}"
-                        data-bs-target="#bulanModal" class="dropdown-item cetakBulan">Cetak Omset Bulanan</a>
+                        data-bs-target="#bulanModal" class="dropdown-item cetakBulan">Cetak Per Periode</a>
                 </div>
             </div>
         </div>
